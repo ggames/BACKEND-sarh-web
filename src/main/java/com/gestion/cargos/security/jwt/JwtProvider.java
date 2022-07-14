@@ -41,14 +41,12 @@ public class JwtProvider {
 		List<String> roles = usuarioPrincipal.getAuthorities().stream().map(GrantedAuthority::getAuthority)
 				.collect(Collectors.toList());
 		return Jwts.builder().setSubject(usuarioPrincipal.getUsername()).claim("roles", roles).setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime() + expiration))
+				.setExpiration(new Date(new Date().getTime() + expiration * 180))
 				.signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
 	}
 
 	public String getNombreUsuarioFromToken(String token) {
-		return Jwts.parser().setSigningKey(secret.getBytes())
-				   .parseClaimsJws(token).getBody()
-				   .getSubject();
+		return Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(token).getBody().getSubject();
 	}
 
 	public boolean validateToken(String token) {
@@ -68,18 +66,25 @@ public class JwtProvider {
 		}
 		return false;
 	}
-	
-	public String refreshToken(JwtDto jwtDto) throws ParseException{
-		
-		JWT jwt = JWTParser.parse(jwtDto.getToken());
-		JWTClaimsSet claims = jwt.getJWTClaimsSet();
-        String nombreUsuario = claims.getSubject();
-        List<String> roles = (List<String>)claims.getClaim("roles");
-		return Jwts.builder()
-				.setSubject(nombreUsuario).claim("roles", roles)
-				.setIssuedAt(new Date())
-				.setExpiration(new Date(new Date().getTime() + expiration))
-				.signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
 
+	public String refreshToken(JwtDto jwtDto) throws ParseException {
+
+		try {
+
+			Jwts.parser().setSigningKey(secret.getBytes()).parseClaimsJws(jwtDto.getToken());
+
+		} catch (ExpiredJwtException e) {
+			JWT jwt = JWTParser.parse(jwtDto.getToken());
+			JWTClaimsSet claims = jwt.getJWTClaimsSet();
+			String nombreUsuario = claims.getSubject();
+			List<String> roles = (List<String>) claims.getClaim("roles");
+			return Jwts.builder().setSubject(nombreUsuario).claim("roles", roles).setIssuedAt(new Date())
+					.setExpiration(new Date(new Date().getTime() + expiration * 180))
+					.signWith(SignatureAlgorithm.HS512, secret.getBytes()).compact();
+
+		}
+
+		return null;
 	}
+
 }
