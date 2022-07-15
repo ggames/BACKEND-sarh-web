@@ -29,8 +29,8 @@ public class EstadoPlantaControlador {
 	  @Autowired
 	  private EstadoPlantaServicioImpl estadoPlantaServicio;
 	 
-	  //@Autowired
-     // private EstadoPlantaValidatorImpl estadoPlantaValidator;
+	  @Autowired
+      private EstadoPlantaValidatorImpl estadoPlantaValidator;
 	  
 	  @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
 	  public ResponseEntity<?>obtenerTodosEstadoPlanta(){
@@ -44,23 +44,23 @@ public class EstadoPlantaControlador {
 		  return ResponseEntity.ok(this.estadoPlantaServicio.findByEstadoPlantaId(id));
 	  }
 
-	  @PostMapping(value = "create", consumes = MediaType.APPLICATION_JSON_VALUE)
+	  @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
 	  public ResponseEntity<?>guardarEstadoPlanta(@RequestBody EstadoPlantaRequest req) throws ApiUnprocessableEntity{
 
-       //  this.estadoPlantaValidator.validator(req);
+         this.estadoPlantaValidator.validator(req);
         
          this.estadoPlantaServicio.save(req);
          
          return ResponseEntity.ok(Boolean.TRUE);
 	  }
 	 
-	  @PutMapping(value = "update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+	  @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	  public ResponseEntity<?> actualizarEstadoPlanta(@RequestBody EstadoPlantaRequest req,@PathVariable("id") Long id) throws ApiUnprocessableEntity{
          if(!this.estadoPlantaServicio.existeEstadoPlanta(id)) {
         	 return new ResponseEntity(new Mensaje("No existe el Estado de Planta para modificar"), HttpStatus.NOT_FOUND);
          }
          
-        // this.estadoPlantaValidator.validator(req);
+         this.estadoPlantaValidator.validator(req);
          
          this.estadoPlantaServicio.update(req, id);
          

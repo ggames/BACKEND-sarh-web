@@ -6,6 +6,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class PuntoRequest {
 
+	@JsonProperty("id")
+	private String id;
+	
 	@JsonProperty("codigo_cargo")
 	private String codigoCargo;
 	
@@ -23,6 +26,15 @@ public class PuntoRequest {
 
 	@JsonProperty("updated_at")
 	private Date updatedAt;
+
+		
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public String getCodigoCargo() {
 		return codigoCargo;
