@@ -16,7 +16,7 @@ public interface PuntoServicio {
 	
 	public void save(PuntoRequest request);
 
-	public void update(PuntoRequest request, Long puntoId);
+	public void update(Long puntoId, PuntoRequest request);
 	
 	public void delete(Long id);
 	

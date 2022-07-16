@@ -1,6 +1,9 @@
 package com.gestion.cargos.validator;
 
-import org.springframework.stereotype.Component;
+import com.gestion.cargos.excepciones.BusinessException;
+import com.gestion.cargos.excepciones.RequestException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.gestion.cargos.dto.PuntoRequest;
@@ -10,7 +13,7 @@ public class PuntoValidatorImpl {
 
     public void validator(PuntoRequest request) {
         if (request.getCodigoCargo().equals("")) {
-            throw new RuntimeException("El Codigo de Cargo es obligatorio");
+            throw new BusinessException("P-401", HttpStatus.INTERNAL_SERVER_ERROR,"El Código de Cargo es obligatorio");
         }
 
     }

@@ -52,7 +52,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 	}
 
 	@Override
-	public void update(PuntoRequest request, Long puntoId) {
+	public void update(Long puntoId, PuntoRequest request) {
 
 		Optional<Punto> punto = this.puntoRepositorio.findById(puntoId);
 
@@ -61,7 +61,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 		uPunto.setCodigoCargo(request.getCodigoCargo());
 		uPunto.setNombreCargo(request.getNombreCargo());
 		uPunto.setDedicacionCargo(request.getDedicacionCargo());
-		uPunto.setPuntos(request.getPunto());
+		uPunto.setPuntos(request.getPuntos());
 
 		this.puntoRepositorio.save(uPunto);
 	}
