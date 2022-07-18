@@ -1,5 +1,6 @@
 package com.gestion.cargos.repositorio;
 
+import java.util.List;
 import java.util.Optional;
 
 
@@ -13,5 +14,11 @@ import com.gestion.cargos.modelo.Punto;
 public interface PuntoRepositorio extends JpaRepository<Punto, Long> {
 
 	@Transactional(readOnly = true)
-	Optional<Punto> findByNombreCargo(String nombre);
+	List<Punto> findByNombreCargo(String nombre);
+
+	@Transactional(readOnly = true)
+	List<Punto> findByCodigoCargo(String codigoCargo);
+
+	@Transactional(readOnly = true)
+	List<Punto> findByDedicacionCargo(String dedicacion);
 }

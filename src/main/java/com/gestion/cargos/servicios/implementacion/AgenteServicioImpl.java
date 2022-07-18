@@ -34,13 +34,13 @@ public class AgenteServicioImpl implements AgenteServicio {
 			dto.add(agenteDto);
 		}
 
-		// TODO Auto-generated method stub
+
 		return dto;
 	}
 
 	@Override
 	public AgenteDto findByNombre(String nombre) {
-		// TODO Auto-generated method stub
+
 		Optional<Agente> agente = this.agenteRepositorio.findByNombre(nombre);
 
 		if (!agente.isPresent()) {

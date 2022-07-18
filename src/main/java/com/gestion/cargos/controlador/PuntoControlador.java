@@ -46,7 +46,7 @@ public class PuntoControlador {
     }
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PuntoDto>> findAll(){
+    public ResponseEntity<List<PuntoDto>> findAllPunto(){
         return ResponseEntity.ok (this.puntoServicio.findAll());
     }
     @GetMapping("/{puntoId}")

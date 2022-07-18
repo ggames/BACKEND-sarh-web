@@ -56,7 +56,7 @@ public class EstadoPlantaServicioImpl implements EstadoPlantaServicio {
 	}
 
 	@Override
-	public boolean existeEstadoPlanta(Long id) {
+	public boolean existEstadoPlanta(Long id) {
          
 		return this.estadoPlantaRepositorio.existsById(id);
 	}

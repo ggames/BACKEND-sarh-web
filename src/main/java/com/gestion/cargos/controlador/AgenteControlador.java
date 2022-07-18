@@ -33,7 +33,7 @@ public class AgenteControlador {
 	// Este metodo sirve para listar todos los agentes
 
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> allAgente() {
+	public ResponseEntity<Object> findAll() {
 
 		return ResponseEntity.ok(this.agenteServicio.findAll());
 

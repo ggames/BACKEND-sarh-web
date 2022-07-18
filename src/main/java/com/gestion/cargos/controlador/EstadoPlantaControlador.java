@@ -1,5 +1,6 @@
 package com.gestion.cargos.controlador;
 
+import com.gestion.cargos.dto.EstadoPlantaDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,12 +19,14 @@ import com.gestion.cargos.servicios.implementacion.EstadoPlantaServicioImpl;
 import com.gestion.cargos.utils.exceptions.ApiUnprocessableEntity;
 import com.gestion.cargos.validator.EstadoPlantaValidatorImpl;
 
+import java.util.List;
+
 /**
  * @author ggames
  *
  */
 @RestController
-@RequestMapping("/estadoplanta/")
+@RequestMapping(value = "/estadoplanta")
 public class EstadoPlantaControlador {
 
 	  @Autowired
@@ -32,20 +35,20 @@ public class EstadoPlantaControlador {
 	  @Autowired
       private EstadoPlantaValidatorImpl estadoPlantaValidator;
 	  
-	  @GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<?>obtenerTodosEstadoPlanta(){
+	  @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+	  public ResponseEntity<List<EstadoPlantaDto>>findAll(){
 		  
 		  return ResponseEntity.ok(this.estadoPlantaServicio.findAll());
 	  }
 	  
 	  @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<?>obtenerEstadoPlantaId(@PathVariable("id") Long id){
+	  public ResponseEntity<?>findByEstadoPlantaId(@PathVariable("id") Long id){
 		  
 		  return ResponseEntity.ok(this.estadoPlantaServicio.findByEstadoPlantaId(id));
 	  }
 
 	  @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<?>guardarEstadoPlanta(@RequestBody EstadoPlantaRequest req) throws ApiUnprocessableEntity{
+	  public ResponseEntity<?>saveEstadoPlanta(@RequestBody EstadoPlantaRequest req) throws ApiUnprocessableEntity{
 
          this.estadoPlantaValidator.validator(req);
         
@@ -55,8 +58,8 @@ public class EstadoPlantaControlador {
 	  }
 	 
 	  @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<?> actualizarEstadoPlanta(@RequestBody EstadoPlantaRequest req,@PathVariable("id") Long id) throws ApiUnprocessableEntity{
-         if(!this.estadoPlantaServicio.existeEstadoPlanta(id)) {
+	  public ResponseEntity<?> updateEstadoPlanta(@RequestBody EstadoPlantaRequest req,@PathVariable("id") Long id) throws ApiUnprocessableEntity{
+         if(!this.estadoPlantaServicio.existEstadoPlanta(id)) {
         	 return new ResponseEntity(new Mensaje("No existe el Estado de Planta para modificar"), HttpStatus.NOT_FOUND);
          }
          

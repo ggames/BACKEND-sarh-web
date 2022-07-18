@@ -14,7 +14,7 @@ public interface EstadoPlantaServicio {
 	
 	void update(EstadoPlantaRequest request, Long id);
 	
-	boolean existeEstadoPlanta(Long id);
+	boolean existEstadoPlanta(Long id);
 
 	List<EstadoPlantaDto> findAll();
 	
