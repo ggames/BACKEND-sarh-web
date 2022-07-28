@@ -20,16 +20,16 @@ public interface AgenteServicio{
     @Query("SELECT a FROM agente a WHERE a.nombre= ?1")
     AgenteDto findByNombre(String nombre);
     
-    AgenteDto findByAgenteId(int id);
+    AgenteDto findByAgenteId(Long id);
     
     public void save(AgenteRequest agente);
 	
-    public void update(AgenteRequest request, int agenteId);
+    public void update(AgenteRequest request, Long agenteId);
     
-    public void deleteAgente(int id);
+    public void deleteAgente(Long id);
 	
-	public Agente obtenerAgente(int id);
+	public Agente obtenerAgente(Long id);
 	
-	public boolean existeAgente(int id);
+	public boolean existeAgente(Long id);
 	
 }

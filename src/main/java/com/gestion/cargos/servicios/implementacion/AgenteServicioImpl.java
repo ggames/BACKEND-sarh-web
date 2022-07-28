@@ -52,7 +52,7 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
-	public AgenteDto findByAgenteId(int id) {
+	public AgenteDto findByAgenteId(Long id) {
 
 		Optional<Agente> agentes = this.agenteRepositorio.findById(id);
 
@@ -64,7 +64,7 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
-	public void update(AgenteRequest request, int agenteId) {
+	public void update(AgenteRequest request, Long agenteId) {
 
 		Optional<Agente> agente = this.agenteRepositorio.findById(agenteId);
 
@@ -94,13 +94,13 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
-	public Agente obtenerAgente(int id) {
+	public Agente obtenerAgente(Long id) {
 		// TODO Auto-generated method stub
 		return agenteRepositorio.findById(id).orElse(null);
 	}
 
 	@Override
-	public boolean existeAgente(int id) {
+	public boolean existeAgente(Long id) {
 		// TODO Auto-generated method stub
 		return agenteRepositorio.existsById(id);
 	}
@@ -110,7 +110,7 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
-	public void deleteAgente(int id) {
+	public void deleteAgente(Long id) {
 		// TODO Auto-generated method stub
 		agenteRepositorio.deleteById(id);
 	}

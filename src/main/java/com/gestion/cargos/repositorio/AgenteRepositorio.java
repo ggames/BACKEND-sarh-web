@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gestion.cargos.modelo.Agente;
 
 @Repository
-public interface AgenteRepositorio extends JpaRepository<Agente, Integer> {
+public interface AgenteRepositorio extends JpaRepository<Agente, Long> {
     
 	@Transactional(readOnly = true)
 	Optional<Agente>findByNombre(String nombre);

@@ -11,7 +11,7 @@ import lombok.Data;
 public class AgenteRequest {
    
 	@JsonProperty("id")
-	private long id;
+	private Long id;
 	
 	@JsonProperty("nombre")
 	private String nombre;

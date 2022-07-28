@@ -40,7 +40,7 @@ public class AgenteControlador {
 	}
 
 	@GetMapping(value = "{id}")
-	public ResponseEntity<Object> findByAgenteId(@PathVariable("id") int id) {
+	public ResponseEntity<Object> findByAgenteId(@PathVariable("id") Long id) {
 
 		return ResponseEntity.ok(this.agenteServicio.findByAgenteId(id));
 	}
@@ -52,7 +52,7 @@ public class AgenteControlador {
 	}
 
 	@PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> updateAgente(@PathVariable("id") int id, @RequestBody AgenteRequest agente)
+	public ResponseEntity<?> updateAgente(@PathVariable("id") Long id, @RequestBody AgenteRequest agente)
 			throws ApiUnprocessableEntity {
 		if (!agenteServicio.existeAgente(id))
 			return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
@@ -75,7 +75,7 @@ public class AgenteControlador {
 
 	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping(value = "/{agenteId}/delete")
-	public ResponseEntity<Object> deleteAgente(@PathVariable("agenteId") int id) {
+	public ResponseEntity<Object> deleteAgente(@PathVariable("agenteId") Long id) {
 
 		ResponseEntity respuesta;
 
