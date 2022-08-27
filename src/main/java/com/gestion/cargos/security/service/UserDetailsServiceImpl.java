@@ -9,6 +9,10 @@ import org.springframework.stereotype.Service;
 import com.gestion.cargos.security.entity.Usuario;
 import com.gestion.cargos.security.entity.UsuarioPrincipal;
 
+/*
+* CLase que convierte la clase usuario en un UsuarioPrincipal
+* UserDetailsService es propia de Spring Security
+* */
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 

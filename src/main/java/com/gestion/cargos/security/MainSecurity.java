@@ -22,12 +22,19 @@ import com.gestion.cargos.security.service.UserDetailsServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+/*
+* con PrePostEnabled se usa para indicar a que metodos puede acceder solo el admin
+* Los metodos que no llevan anotacion pueden acceder el admin como un generic user
+* @PreAuthorized solo puede acceder el admin
+* */
+
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
 
+    // Devuelve el mensaje no autorizado
     @Autowired
     JwtEntryPoint jwtEntryPoint;
 
@@ -45,7 +52,6 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
-
     
     @Bean
     @Override
@@ -60,6 +66,10 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // Desactivamos cookies ya que enviamos un token
+        // cada vez que hacemos un petición
+
         http.cors().and().csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/auth/**",

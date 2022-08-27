@@ -16,6 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+/*
+ * Se ejecuta por cada petición , comprueba  que sea  valido el token
+ * Utiliza el provider para validar que sea valido
+ * si es valido permite acceso al recurso si no lanza una excepción
+ *
+ *
+ * */
+
 public class JwtTokenFilter extends OncePerRequestFilter {
 
     private final static Logger logger = LoggerFactory.getLogger(JwtTokenFilter.class);
@@ -25,7 +33,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {
 
     @Autowired
     UserDetailsServiceImpl userDetailsService;
-
+// El token esta formado
+    // cabecera --> Authorization: Bearer token
+    // Hace las comprobaciones
+   // Este metodo se ejecuta cada vez que se haga una petición al Server
     @Override
     protected void doFilterInternal(HttpServletRequest req, HttpServletResponse res, FilterChain filterChain) throws ServletException, IOException {
         try {
@@ -44,6 +55,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {
         filterChain.doFilter(req, res);
     }
 
+    // Obtenemos que token sin Bearer + espacio
     private String getToken(HttpServletRequest request){
         String header = request.getHeader("Authorization");
         if(header != null && header.startsWith("Bearer"))

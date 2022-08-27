@@ -13,8 +13,17 @@ public class UsuarioPrincipal implements UserDetails {
     private String nombreUsuario;
     private String email;
     private String password;
+
+    // Variable que nos da la autorizacion  (no confundir con autenticacion)
+    // Coleccion de tipo generico que extiende de
+    // GrantherAuthority de Spring security
     private Collection<? extends GrantedAuthority> authorities;
 
+    /*
+    * Clase encargada de generar la seguridad
+    * Clase que implemente los privilegios de cada usuario
+    * UserDetails es una clase propia de Spring Security
+    * */
     public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
@@ -23,7 +32,9 @@ public class UsuarioPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
+    // Metodo que asigna los privilegios (autroizacion)
     public static UsuarioPrincipal build(Usuario usuario){
+        // Convertimos la clase ROL a la clase GrantherAuthority
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
                 .getRolNombre().name())).collect(Collectors.toList());

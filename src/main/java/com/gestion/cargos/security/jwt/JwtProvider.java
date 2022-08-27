@@ -25,10 +25,14 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 
+/*
+*  Clase que genera el token y valida que este bien formado y no este expirado
+* */
 @Component
 public class JwtProvider {
 	private final static Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
+	// Valores que tenemos en Application.properties
 	@Value("${jwt.secret}")
 	private String secret;
 
