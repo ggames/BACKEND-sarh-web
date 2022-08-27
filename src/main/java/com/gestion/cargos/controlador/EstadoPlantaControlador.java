@@ -1,6 +1,6 @@
 package com.gestion.cargos.controlador;
 
-import com.gestion.cargos.dto.EstadoPlantaDto;
+import com.gestion.cargos.dto.EstadoPlantaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -36,7 +36,7 @@ public class EstadoPlantaControlador {
       private EstadoPlantaValidatorImpl estadoPlantaValidator;
 	  
 	  @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-	  public ResponseEntity<List<EstadoPlantaDto>>findAll(){
+	  public ResponseEntity<List<EstadoPlantaDTO>>findAll(){
 		  
 		  return ResponseEntity.ok(this.estadoPlantaServicio.findAll());
 	  }

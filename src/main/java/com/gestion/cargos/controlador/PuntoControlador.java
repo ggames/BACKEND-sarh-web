@@ -1,6 +1,11 @@
 package com.gestion.cargos.controlador;
 
-import com.gestion.cargos.dto.PuntoDto;
+import com.gestion.cargos.dto.PuntoDTO;
+
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -10,14 +15,12 @@ import org.springframework.web.bind.annotation.*;
 import com.gestion.cargos.dto.PuntoRequest;
 import com.gestion.cargos.servicios.implementacion.PuntoServicioImpl;
 import com.gestion.cargos.validator.PuntoValidatorImpl;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
 
-import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 @RestController
-@RequestMapping("/punto")
+@RequestMapping("/puntos/")
 public class PuntoControlador {
 
     @Autowired
@@ -26,17 +29,21 @@ public class PuntoControlador {
     @Autowired
     PuntoServicioImpl puntoServicio;
 
-    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(HttpStatus.OK)
-    public void create(@RequestBody() PuntoRequest request) {
+    Logger logger = LoggerFactory.getLogger(PuntoControlador.class);
 
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<?> create(@RequestBody() PuntoRequest request) {
+
+        logger.info("OBJETO " + request.getOrigenes());
         this.puntoValidator.validator(request);
         this.puntoServicio.save(request);
+
+        return ResponseEntity.ok(Boolean.TRUE);
     }
 
-    @PutMapping("/update/{puntoId}")
+    @PutMapping(value = "/update/{puntoId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable Long puntoId, PuntoRequest request){
+    public void update(@PathVariable Long puntoId,@RequestBody() PuntoRequest request){
          if(!this.puntoServicio.existPunto(puntoId)){
              throw new RuntimeException("No existe el Punto!");
          }
@@ -46,12 +53,13 @@ public class PuntoControlador {
     }
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PuntoDto>> findAllPunto(){
+    public ResponseEntity<List<PuntoDTO>> findAllPunto(){
         return ResponseEntity.ok (this.puntoServicio.findAll());
     }
+
     @GetMapping("/{puntoId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PuntoDto>findByPuntoId(@PathVariable Long puntoId){
+    public ResponseEntity<PuntoDTO>findByPuntoId(@PathVariable Long puntoId){
         return ResponseEntity.ok(this.puntoServicio.findByPuntoId(puntoId));
     }
 

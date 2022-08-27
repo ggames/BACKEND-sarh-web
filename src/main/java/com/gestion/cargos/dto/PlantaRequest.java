@@ -1,13 +1,12 @@
 package com.gestion.cargos.dto;
 
-import java.util.Date;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.modelo.Cargo;
 import com.gestion.cargos.modelo.EstadoPlanta;
-import com.gestion.cargos.modelo.Punto;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class PlantaRequest {

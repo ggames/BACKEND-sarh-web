@@ -1,12 +1,17 @@
 package com.gestion.cargos.security.entity;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Table(name = "usuario", schema = "cargos")
+@Data
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +29,7 @@ public class Usuario {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(schema = "cargos", name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
-    private Set<Rol> roles = new HashSet<>();
+    private List<Rol> roles = new ArrayList<>();
 
     public Usuario() {
     }
@@ -36,51 +41,4 @@ public class Usuario {
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
-
-    public String getNombreUsuario() {
-        return nombreUsuario;
-    }
-
-    public void setNombreUsuario(String nombreUsuario) {
-        this.nombreUsuario = nombreUsuario;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<Rol> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<Rol> roles) {
-        this.roles = roles;
-    }
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
-import com.gestion.cargos.dto.AgenteDto;
+import com.gestion.cargos.dto.AgenteDTO;
 import com.gestion.cargos.dto.AgenteRequest;
 import com.gestion.cargos.modelo.Agente;
 
@@ -15,12 +15,12 @@ public interface AgenteServicio{
     *   firma de funciones que solo se encuentran en la interfaz
     * */
 	
-    List<AgenteDto> findAll();
+    List<AgenteDTO> findAll();
 
     @Query("SELECT a FROM agente a WHERE a.nombre= ?1")
-    AgenteDto findByNombre(String nombre);
+    AgenteDTO findByNombre(String nombre);
     
-    AgenteDto findByAgenteId(Long id);
+    AgenteDTO findByAgenteId(Long id);
     
     public void save(AgenteRequest agente);
 	

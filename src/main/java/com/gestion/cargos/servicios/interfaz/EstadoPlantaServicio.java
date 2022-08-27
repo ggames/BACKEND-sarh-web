@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gestion.cargos.dto.EstadoPlantaDto;
+import com.gestion.cargos.dto.EstadoPlantaDTO;
 import com.gestion.cargos.dto.EstadoPlantaRequest;
 
 @Service
@@ -16,9 +16,9 @@ public interface EstadoPlantaServicio {
 	
 	boolean existEstadoPlanta(Long id);
 
-	List<EstadoPlantaDto> findAll();
+	List<EstadoPlantaDTO> findAll();
 	
-	EstadoPlantaDto findByEstadoPlantaId(Long id);
+	EstadoPlantaDTO findByEstadoPlantaId(Long id);
 	
 	
 }

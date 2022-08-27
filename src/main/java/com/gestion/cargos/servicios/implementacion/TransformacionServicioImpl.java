@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gestion.cargos.dto.TransformacionDto;
+import com.gestion.cargos.dto.TransformacionDTO;
 import com.gestion.cargos.dto.TransformacionRequest;
 import com.gestion.cargos.modelo.Transformacion;
 import com.gestion.cargos.repositorio.TransformacionRepositorio;
@@ -21,15 +21,15 @@ public class TransformacionServicioImpl implements TransformacionServicio{
 	private TransformacionRepositorio transformacionRepositorio;
 	
 	@Override
-	public List<TransformacionDto> findAll() {
+	public List<TransformacionDTO> findAll() {
 		
-		List<TransformacionDto> dto = new ArrayList<>();
+		List<TransformacionDTO> dto = new ArrayList<>();
 		
 		Iterable<Transformacion> transformaciones = transformacionRepositorio.findAll(); 
 		
 		for(Transformacion transformacion: transformaciones) {
 	       // System.out.println(transformacion.getNumeroResolucion() + " " + transformacion.getResultadoTransformacion() );  
-			TransformacionDto transfDto = MHelpers.modelMapper().map(transformacion, TransformacionDto.class );		
+			TransformacionDTO transfDto = MHelpers.modelMapper().map(transformacion, TransformacionDTO.class );
 		   
 			dto.add(transfDto);
 		}
@@ -64,26 +64,26 @@ public class TransformacionServicioImpl implements TransformacionServicio{
 	}
 
 	@Override
-	public TransformacionDto findByNumeroResolucion(String nroresol) {
+	public TransformacionDTO findByNumeroResolucion(String nroresol) {
 		// TODO Auto-generated method stub
 		Optional<Transformacion> transform = this.transformacionRepositorio.findByNumeroResolucion(nroresol);
 	   if(!transform.isPresent()) {
 		  return null;   
 	   }
 	 
-	   return MHelpers.modelMapper().map(transform.get(), TransformacionDto.class);
+	   return MHelpers.modelMapper().map(transform.get(), TransformacionDTO.class);
 	}
 
 
 	@Override
-	public TransformacionDto findByTransformacionId(long id) {
+	public TransformacionDTO findByTransformacionId(long id) {
 		Optional<Transformacion> transformacion = this.transformacionRepositorio.findById(id);
 		
 		if(!transformacion.isPresent()) {
 			return null;	
 		}
 		// TODO Auto-generated method stub
-		return MHelpers.modelMapper().map(transformacion, TransformacionDto.class);
+		return MHelpers.modelMapper().map(transformacion, TransformacionDTO.class);
 	}
 
 }

@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gestion.cargos.dto.SubunidadOrganizativaDto;
+import com.gestion.cargos.dto.SubunidadOrganizativaDTO;
 import com.gestion.cargos.dto.SubunidadOrganizativaRequest;
 
 @Service
 public interface SubunidadOrganizativaServicio {
 
-	List<SubunidadOrganizativaDto>findAll();
+	List<SubunidadOrganizativaDTO>findAll();
 	
-	SubunidadOrganizativaDto findBySuborganizativa(Long id);
+	SubunidadOrganizativaDTO findBySuborganizativa(Long id);
 	
 	void save(SubunidadOrganizativaRequest request);
 	
@@ -20,7 +20,7 @@ public interface SubunidadOrganizativaServicio {
 	
 	void delete(Long id);
 	
-	SubunidadOrganizativaDto findBySubunidadOrganizativaId(Long id);
+	SubunidadOrganizativaDTO findBySubunidadOrganizativaId(Long id);
 	
 	boolean existeSubunidadOrganizativaId(Long id);
 	

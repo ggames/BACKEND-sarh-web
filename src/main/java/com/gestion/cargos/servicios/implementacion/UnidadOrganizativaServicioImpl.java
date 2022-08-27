@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gestion.cargos.dto.UnidadOrganizativaDto;
+import com.gestion.cargos.dto.UnidadOrganizativaDTO;
 import com.gestion.cargos.dto.UnidadOrganizativaRequest;
 import com.gestion.cargos.modelo.UnidadOrganizativa;
 import com.gestion.cargos.repositorio.UnidadOrganizativaRepositorio;
@@ -21,15 +21,15 @@ public class UnidadOrganizativaServicioImpl implements UnidadOrganizativaServici
 	private UnidadOrganizativaRepositorio unidadOrganizativa;
 
 	@Override
-	public List<UnidadOrganizativaDto> findAll() {
+	public List<UnidadOrganizativaDTO> findAll() {
          
-		List<UnidadOrganizativaDto> dto = new ArrayList<>();
+		List<UnidadOrganizativaDTO> dto = new ArrayList<>();
 		
 		Iterable<UnidadOrganizativa> unidades = this.unidadOrganizativa.findAll(); 
 		
 		for(UnidadOrganizativa unidadOrg: unidades) {
 		
-			UnidadOrganizativaDto unidadDto = MHelpers.modelMapper().map(unidadOrg, UnidadOrganizativaDto.class);
+			UnidadOrganizativaDTO unidadDto = MHelpers.modelMapper().map(unidadOrg, UnidadOrganizativaDTO.class);
 		    
 			dto.add(unidadDto);
 		}

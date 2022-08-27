@@ -61,6 +61,5 @@ public class Agente {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date updated_at;
 
-
 	public Agente(){}
 }

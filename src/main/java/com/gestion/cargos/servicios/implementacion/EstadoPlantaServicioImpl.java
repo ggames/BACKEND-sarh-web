@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gestion.cargos.dto.EstadoPlantaDto;
+import com.gestion.cargos.dto.EstadoPlantaDTO;
 import com.gestion.cargos.dto.EstadoPlantaRequest;
 import com.gestion.cargos.modelo.EstadoPlanta;
 import com.gestion.cargos.repositorio.EstadoPlantaRepositorio;
@@ -21,14 +21,14 @@ public class EstadoPlantaServicioImpl implements EstadoPlantaServicio {
 	private EstadoPlantaRepositorio estadoPlantaRepositorio;
 
 	@Override
-	public List<EstadoPlantaDto> findAll() {
+	public List<EstadoPlantaDTO> findAll() {
 
 		Iterable<EstadoPlanta> estados = this.estadoPlantaRepositorio.findAll();
 
-		List<EstadoPlantaDto>dto = new ArrayList<>();
+		List<EstadoPlantaDTO>dto = new ArrayList<>();
 		
 		for (EstadoPlanta estado: estados) {
-			EstadoPlantaDto estadoPlantaDto = MHelpers.modelMapper().map(estado, EstadoPlantaDto.class);
+			EstadoPlantaDTO estadoPlantaDto = MHelpers.modelMapper().map(estado, EstadoPlantaDTO.class);
 		    dto.add(estadoPlantaDto);
 		}
 		// TODO Auto-generated method stub
@@ -62,7 +62,7 @@ public class EstadoPlantaServicioImpl implements EstadoPlantaServicio {
 	}
 
 	@Override
-	public EstadoPlantaDto findByEstadoPlantaId(Long id) {
+	public EstadoPlantaDTO findByEstadoPlantaId(Long id) {
 
 		Optional<EstadoPlanta> estado = this.estadoPlantaRepositorio.findById(id);
 		
@@ -71,7 +71,7 @@ public class EstadoPlantaServicioImpl implements EstadoPlantaServicio {
 			return null;
 		}
 		
-		return MHelpers.modelMapper().map(estado, EstadoPlantaDto.class);
+		return MHelpers.modelMapper().map(estado, EstadoPlantaDTO.class);
 	}
 
 }

@@ -16,7 +16,7 @@ import com.gestion.cargos.modelo.TipoDocumento;
 import com.gestion.cargos.servicios.implementacion.TipoDocumentoServicioImpl;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/")
 public class TipoDocumentoControlador {
 
 

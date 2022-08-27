@@ -3,12 +3,12 @@ package com.gestion.cargos.dto;
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.modelo.Cargo;
 import com.gestion.cargos.modelo.EstadoPlanta;
-import com.gestion.cargos.modelo.Punto;
+
 import java.util.Date;
 
 import lombok.Data;
 @Data
-public class PlantaDto {
+public class PlantaDTO {
 
 	private Long id;
 

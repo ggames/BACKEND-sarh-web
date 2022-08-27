@@ -9,7 +9,7 @@ import java.util.Date;
 
 
 @Data
-public class CargoDto {
+public class CargoDTO {
 
 	private Long id;
 

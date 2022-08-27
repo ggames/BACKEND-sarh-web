@@ -1,76 +1,48 @@
 package com.gestion.cargos.modelo;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import java.util.Date;
+import java.util.List;
+import java.util.Set;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="Punto", schema = "cargos")
+@Table(name="Puntos", schema = "cargos")
+@Data
 public class Punto {
    
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+	@Column(name = "codigo_cargo")
 	private String codigoCargo;
-	
+	@Column(name = "nombre_cargo")
 	private String nombreCargo;
-	
+	@Column(name = "dedicacion_cargo")
 	private String dedicacionCargo;
     
-	private int puntos;
-    
+	private int cantidad_puntos;
+
+	@JsonIgnoreProperties("puntoId")
+    @OneToMany(mappedBy = "puntoId" , cascade = CascadeType.ALL)
+	private List<PuntoOrigen> origenes;
+
 	private Date createdAt;
     
 	private Date updatedAt;
-	
-    public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public String getCodigoCargo() {
-		return codigoCargo;
-	}
-	public void setCodigoCargo(String codigoCargo) {
+
+	public Punto(String codigoCargo, String nombreCargo, String dedicacionCargo, int cantidad_puntos) {
 		this.codigoCargo = codigoCargo;
-	}
-	public String getNombreCargo() {
-		return nombreCargo;
-	}
-	public void setNombreCargo(String nombreCargo) {
 		this.nombreCargo = nombreCargo;
-	}
-	public String getDedicacionCargo() {
-		return dedicacionCargo;
-	}
-	public void setDedicacionCargo(String dedicacionCargo) {
 		this.dedicacionCargo = dedicacionCargo;
+		this.cantidad_puntos = cantidad_puntos;
 	}
-	public int getPuntos() {
-		return puntos;
+
+	public Punto() {
 	}
-	public void setPuntos(int puntos) {
-		this.puntos = puntos;
-	}
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-    
-    
-    
 }

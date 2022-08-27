@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gestion.cargos.dto.TransformacionDto;
+import com.gestion.cargos.dto.TransformacionDTO;
 import com.gestion.cargos.dto.TransformacionRequest;
 
 @Service
@@ -16,9 +16,9 @@ public interface TransformacionServicio {
 	
 	boolean existeTransformacion(long id);
 	
-	List<TransformacionDto> findAll();
+	List<TransformacionDTO> findAll();
 	
-	TransformacionDto findByTransformacionId(long id);
+	TransformacionDTO findByTransformacionId(long id);
 	
-    TransformacionDto findByNumeroResolucion(String nroresol);
+    TransformacionDTO findByNumeroResolucion(String nroresol);
 }

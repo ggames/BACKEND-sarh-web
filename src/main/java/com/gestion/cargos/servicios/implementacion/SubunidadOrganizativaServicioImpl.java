@@ -7,11 +7,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gestion.cargos.dto.SubunidadOrganizativaDto;
+import com.gestion.cargos.dto.SubunidadOrganizativaDTO;
 import com.gestion.cargos.dto.SubunidadOrganizativaRequest;
-import com.gestion.cargos.dto.TransformacionDto;
 import com.gestion.cargos.modelo.SubunidadOrganizativa;
-import com.gestion.cargos.modelo.Transformacion;
 import com.gestion.cargos.repositorio.SubunidadOrganizativaRepositorio;
 import com.gestion.cargos.servicios.interfaz.SubunidadOrganizativaServicio;
 import com.gestion.cargos.utils.MHelpers;
@@ -23,16 +21,16 @@ public class SubunidadOrganizativaServicioImpl implements SubunidadOrganizativaS
 	private SubunidadOrganizativaRepositorio subunidadOrganizativaRepositorio;
 	
 	@Override
-	public List<SubunidadOrganizativaDto> findAll() {
+	public List<SubunidadOrganizativaDTO> findAll() {
 		
 		Iterable<SubunidadOrganizativa> subUnidadesOrg =  this.subunidadOrganizativaRepositorio.findAll();
 		
-		List<SubunidadOrganizativaDto>subUnidadesDto = new ArrayList<>();
+		List<SubunidadOrganizativaDTO>subUnidadesDto = new ArrayList<>();
 		
 		for (SubunidadOrganizativa Subunidades: subUnidadesOrg) {
 		
-			SubunidadOrganizativaDto subDTO = MHelpers.modelMapper()
-					    .map(Subunidades, SubunidadOrganizativaDto.class);
+			SubunidadOrganizativaDTO subDTO = MHelpers.modelMapper()
+					    .map(Subunidades, SubunidadOrganizativaDTO.class);
 		
 		   subUnidadesDto.add(subDTO);
 		}
@@ -41,13 +39,13 @@ public class SubunidadOrganizativaServicioImpl implements SubunidadOrganizativaS
 	}
 
 	@Override
-	public SubunidadOrganizativaDto findBySuborganizativa(Long id) {
+	public SubunidadOrganizativaDTO findBySuborganizativa(Long id) {
 		
-		SubunidadOrganizativaDto dto;
+		SubunidadOrganizativaDTO dto;
 		
 		Optional<SubunidadOrganizativa> subunidad = subunidadOrganizativaRepositorio.findById(id);
 		
-		dto = MHelpers.modelMapper().map(subunidad, SubunidadOrganizativaDto.class);
+		dto = MHelpers.modelMapper().map(subunidad, SubunidadOrganizativaDTO.class);
 		return dto;
 	}
 
@@ -86,14 +84,14 @@ public class SubunidadOrganizativaServicioImpl implements SubunidadOrganizativaS
 	}
 
 	@Override
-	public SubunidadOrganizativaDto findBySubunidadOrganizativaId(Long id) {
+	public SubunidadOrganizativaDTO findBySubunidadOrganizativaId(Long id) {
 		Optional<SubunidadOrganizativa> subunidad = this.subunidadOrganizativaRepositorio.findById(id);
 		
 		if(!subunidad.isPresent()) {
 			return null;	
 		}
 		// TODO Auto-generated method stub
-		return MHelpers.modelMapper().map(subunidad , SubunidadOrganizativaDto.class);
+		return MHelpers.modelMapper().map(subunidad , SubunidadOrganizativaDTO.class);
 	}
 
 }

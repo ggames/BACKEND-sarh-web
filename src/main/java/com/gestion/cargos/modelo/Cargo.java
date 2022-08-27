@@ -1,110 +1,62 @@
 package com.gestion.cargos.modelo;
 
+import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Cargo", schema = "cargos")
+@Table(name = "cargos", schema = "cargos")
+@Data
 public class Cargo {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@ManyToOne
-	@JoinColumn(name = "unidad_organizacional_id")
-	private UnidadOrganizativa unidadOrganizativaId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@ManyToOne
-	@JoinColumn(name = "punto_id")
-	private Punto puntoId;
-	
-	private String estadoCargo;
-	
-	@ManyToOne
-	@JoinColumn(name = "transf_creacion_id")
-	private Transformacion transfCreacionId;
-	
-	@ManyToOne
-	@JoinColumn(name = "transf_supresion_id")
-	private Transformacion transfSupresionId;
-	
-	private Date createdAt;
-	
-	private Date updatedAt;
+    @ManyToOne
+    @JoinColumn(name = "unidad_organizacional_id")
+    private UnidadOrganizativa unidadOrganizativaId;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    @JoinColumn(name = "punto_id")
+    private Punto puntoId;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private String estadoCargo;
 
-	public UnidadOrganizativa getUnidadOrganizacionId() {
-		return unidadOrganizativaId;
-	}
+    @ManyToOne
+    @JoinColumn(name = "transf_creacion_id")
+    private Transformacion transfCreacionId;
 
-	public void setUnidadOrganizacionId(UnidadOrganizativa unidadOrganizativaId) {
-		this.unidadOrganizativaId = unidadOrganizativaId;
-	}
+    @ManyToOne
+    @JoinColumn(name = "transf_supresion_id")
+    private Transformacion transfSupresionId;
 
-	public Punto getPuntoId() {
-		return puntoId;
-	}
+    @OneToMany(mappedBy = "cargoId", cascade = CascadeType.ALL)
+    private List<Planta> plantas = new ArrayList<>();
 
-	public void setPuntoId(Punto puntoId) {
-		this.puntoId = puntoId;
-	}
+    private Date createdAt;
 
-	public String getEstadoCargo() {
-		return estadoCargo;
-	}
+    private Date updatedAt;
 
-	public void setEstadoCargo(String estadoCargo) {
-		this.estadoCargo = estadoCargo;
-	}
 
-	public Transformacion getTransfCreacionId() {
-		return transfCreacionId;
-	}
+    public Cargo(UnidadOrganizativa unidadOrganizativaId, Punto puntoId, String estadoCargo, Transformacion transfCreacionId, Transformacion transfSupresionId) {
+        this.unidadOrganizativaId = unidadOrganizativaId;
+        this.puntoId = puntoId;
+        this.estadoCargo = estadoCargo;
+        this.transfCreacionId = transfCreacionId;
+        this.transfSupresionId = transfSupresionId;
+    }
 
-	public void setTransfCreacionId(Transformacion transfCreacionId) {
-		this.transfCreacionId = transfCreacionId;
-	}
+    public Cargo() {
+    }
 
-	public Transformacion getTransfSupresionId() {
-		return transfSupresionId;
-	}
-
-	public void setTransfSupresionId(Transformacion transfSupresionId) {
-		this.transfSupresionId = transfSupresionId;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
-	
-
+    public void addPlanta(Planta planta) {
+        this.plantas.add(planta);
+        planta.setCargoId(this);
+    }
 }

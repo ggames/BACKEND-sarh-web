@@ -1,6 +1,6 @@
 package com.gestion.cargos.servicios.implementacion;
 
-import com.gestion.cargos.dto.PlantaDto;
+import com.gestion.cargos.dto.PlantaDTO;
 import com.gestion.cargos.dto.PlantaRequest;
 import com.gestion.cargos.modelo.Planta;
 import com.gestion.cargos.repositorio.PlantaRepositorio;
@@ -20,12 +20,12 @@ public class PlantaServicioImpl implements PlantaServicio {
     private PlantaRepositorio plantaRepositorio;
 
     @Override
-    public List<PlantaDto> findAll() {
+    public List<PlantaDTO> findAll() {
         Iterable<Planta> plantalist = this.plantaRepositorio.findAll();
-        List<PlantaDto> plantalistDTO = new ArrayList<>();
+        List<PlantaDTO> plantalistDTO = new ArrayList<>();
 
         for (Planta planta: plantalist) {
-            PlantaDto plantaDto = MHelpers.modelMapper().map(planta, PlantaDto.class);
+            PlantaDTO plantaDto = MHelpers.modelMapper().map(planta, PlantaDTO.class);
             plantalistDTO.add(plantaDto);
         }
 
@@ -33,9 +33,9 @@ public class PlantaServicioImpl implements PlantaServicio {
     }
 
     @Override
-    public PlantaDto findByPlantaId(Long plantaId) {
+    public PlantaDTO findByPlantaId(Long plantaId) {
         Planta planta = this.plantaRepositorio.findById(plantaId).orElseThrow();
-        return MHelpers.modelMapper().map(planta, PlantaDto.class);
+        return MHelpers.modelMapper().map(planta, PlantaDTO.class);
     }
 
     @Override

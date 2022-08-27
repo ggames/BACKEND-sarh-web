@@ -1,35 +1,33 @@
 package com.gestion.cargos.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import com.gestion.cargos.modelo.PuntoOrigen;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
-@Setter
+@Data
 public class PuntoRequest {
 
-	@JsonProperty("id")
-	private String id;
-
-	@JsonProperty("codigo_cargo")
+	@JsonProperty("codigoCargo")
 	private String codigoCargo;
 
-	@JsonProperty("nombre_cargo")
+	@JsonProperty("nombreCargo")
 	private String nombreCargo;
 
-	@JsonProperty("dedicacion_cargo")
+	@JsonProperty("dedicacionCargo")
 	private String dedicacionCargo;
 
-	@JsonProperty("puntos")
-	private int puntos;
+	@JsonProperty("cantidad_puntos")
+	private int cantidad_puntos;
 
-	@JsonProperty("created_at")
-	private Date createdAt;
-
-	@JsonProperty("updated_at")
-	private Date updatedAt;
+	@JsonProperty("origenes")
+	private List<PuntoOrigenRequest> origenes = new ArrayList<>();
 
 }

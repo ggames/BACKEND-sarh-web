@@ -44,5 +44,15 @@ public class Planta {
 	
 	private Date updateAt;
 
-		
+	public Planta(String caracter, Cargo cargoId, EstadoPlanta estadoPlantaId, Agente agenteId, Date fechaMovimiento, String motivoMovimiento) {
+		this.caracter = caracter;
+		this.cargoId = cargoId;
+		this.estadoPlantaId = estadoPlantaId;
+		this.agenteId = agenteId;
+		this.fechaMovimiento = fechaMovimiento;
+		this.motivoMovimiento = motivoMovimiento;
+	}
+
+	public Planta() {
+	}
 }

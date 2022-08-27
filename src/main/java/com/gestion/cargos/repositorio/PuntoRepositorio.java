@@ -19,6 +19,7 @@ public interface PuntoRepositorio extends JpaRepository<Punto, Long> {
 	@Transactional(readOnly = true)
 	List<Punto> findByCodigoCargo(String codigoCargo);
 
-	@Transactional(readOnly = true)
-	List<Punto> findByDedicacionCargo(String dedicacion);
+
+	/*@Transactional(readOnly = true)
+	List<Punto> findByDedicacionCargo(String dedicacion);*/
 }

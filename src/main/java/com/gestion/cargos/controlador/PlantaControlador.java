@@ -1,9 +1,8 @@
 package com.gestion.cargos.controlador;
 
 import com.gestion.cargos.dto.Mensaje;
-import com.gestion.cargos.dto.PlantaDto;
+import com.gestion.cargos.dto.PlantaDTO;
 import com.gestion.cargos.dto.PlantaRequest;
-import com.gestion.cargos.modelo.Planta;
 import com.gestion.cargos.servicios.implementacion.PlantaServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,12 +20,12 @@ public class PlantaControlador {
     private PlantaServicioImpl plantaServicio;
 
     @GetMapping(value = "/all" , produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<PlantaDto>> findAllPlanta(){
+    public ResponseEntity<List<PlantaDTO>> findAllPlanta(){
        return  ResponseEntity.ok(this.plantaServicio.findAll());
     }
 
     @GetMapping(value = "/{plantaId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PlantaDto>findByPlantaId(@PathVariable Long plantaId){
+    public ResponseEntity<PlantaDTO>findByPlantaId(@PathVariable Long plantaId){
 
         return ResponseEntity.ok(this.plantaServicio.findByPlantaId(plantaId));
     }

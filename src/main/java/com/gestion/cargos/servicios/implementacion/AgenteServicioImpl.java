@@ -7,7 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.gestion.cargos.dto.AgenteDto;
+import com.gestion.cargos.dto.AgenteDTO;
 import com.gestion.cargos.dto.AgenteRequest;
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.repositorio.AgenteRepositorio;
@@ -21,15 +21,15 @@ public class AgenteServicioImpl implements AgenteServicio {
 	private AgenteRepositorio agenteRepositorio;
 
 	@Override
-	public List<AgenteDto> findAll() {
+	public List<AgenteDTO> findAll() {
 
-		List<AgenteDto> dto = new ArrayList<>();
+		List<AgenteDTO> dto = new ArrayList<>();
 
 		Iterable<Agente> agentes = this.agenteRepositorio.findAll();
 
 		for (Agente agente : agentes) {
 
-			AgenteDto agenteDto = MHelpers.modelMapper().map(agente, AgenteDto.class);
+			AgenteDTO agenteDto = MHelpers.modelMapper().map(agente, AgenteDTO.class);
 
 			dto.add(agenteDto);
 		}
@@ -39,7 +39,7 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
-	public AgenteDto findByNombre(String nombre) {
+	public AgenteDTO findByNombre(String nombre) {
 
 		Optional<Agente> agente = this.agenteRepositorio.findByNombre(nombre);
 
@@ -48,11 +48,11 @@ public class AgenteServicioImpl implements AgenteServicio {
 			return null;
 		}
 
-		return MHelpers.modelMapper().map(agente.get(), AgenteDto.class);
+		return MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
 	}
 
 	@Override
-	public AgenteDto findByAgenteId(Long id) {
+	public AgenteDTO findByAgenteId(Long id) {
 
 		Optional<Agente> agentes = this.agenteRepositorio.findById(id);
 
@@ -60,7 +60,7 @@ public class AgenteServicioImpl implements AgenteServicio {
 			return null;
 		}
 
-		return MHelpers.modelMapper().map(agentes.get(), AgenteDto.class);
+		return MHelpers.modelMapper().map(agentes.get(), AgenteDTO.class);
 	}
 
 	@Override
@@ -115,9 +115,9 @@ public class AgenteServicioImpl implements AgenteServicio {
 		agenteRepositorio.deleteById(id);
 	}
 
-	private AgenteDto convertToAgenteDto(final Agente agente) {
+	private AgenteDTO convertToAgenteDto(final Agente agente) {
 
-		return MHelpers.modelMapper().map(agente, AgenteDto.class);
+		return MHelpers.modelMapper().map(agente, AgenteDTO.class);
 	}
 
 }

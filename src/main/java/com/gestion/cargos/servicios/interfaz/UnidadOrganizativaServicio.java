@@ -3,13 +3,13 @@ package com.gestion.cargos.servicios.interfaz;
 import java.util.List;
 
 
-import com.gestion.cargos.dto.UnidadOrganizativaDto;
+import com.gestion.cargos.dto.UnidadOrganizativaDTO;
 import com.gestion.cargos.dto.UnidadOrganizativaRequest;
 import com.gestion.cargos.modelo.UnidadOrganizativa;
 
 public interface UnidadOrganizativaServicio  {
 
-	List<UnidadOrganizativaDto> findAll();
+	List<UnidadOrganizativaDTO> findAll();
 	
 	public void saveUnidadOrganizativa(UnidadOrganizativaRequest request);
 

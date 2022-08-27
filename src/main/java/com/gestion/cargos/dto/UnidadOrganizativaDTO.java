@@ -2,7 +2,7 @@ package com.gestion.cargos.dto;
 
 import java.util.Date;
 
-public class UnidadOrganizativaDto {
+public class UnidadOrganizativaDTO {
 
 	private Long id;
 

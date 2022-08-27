@@ -2,7 +2,7 @@
 
 package com.gestion.cargos.servicios.implementacion;
 
-import com.gestion.cargos.dto.CargoDto;
+import com.gestion.cargos.dto.CargoDTO;
 import com.gestion.cargos.dto.CargoRequest;
 import com.gestion.cargos.modelo.Cargo;
 import com.gestion.cargos.repositorio.CargoRepositorio;
@@ -20,12 +20,12 @@ public class CargoServicioImpl implements CargoServicio {
     private CargoRepositorio cargoRepositorio;
 
     @Override
-    public List<CargoDto> findAll() {
+    public List<CargoDTO> findAll() {
 
         Iterable<Cargo> cargos = this.cargoRepositorio.findAll();
-        List<CargoDto> cargoDtos = new ArrayList<>();
+        List<CargoDTO> cargoDtos = new ArrayList<>();
         for (Cargo cargo: cargos) {
-           CargoDto cargoDto = MHelpers.modelMapper().map(cargo, CargoDto.class);
+           CargoDTO cargoDto = MHelpers.modelMapper().map(cargo, CargoDTO.class);
            cargoDtos.add(cargoDto);
         }
 
@@ -33,9 +33,9 @@ public class CargoServicioImpl implements CargoServicio {
     }
 
     @Override
-    public CargoDto findByCargoId(Long cargoId) {
+    public CargoDTO findByCargoId(Long cargoId) {
         Cargo cargo = this.cargoRepositorio.findById(cargoId).orElse(null);
-        return MHelpers.modelMapper().map(cargo, CargoDto.class);
+        return MHelpers.modelMapper().map(cargo, CargoDTO.class);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class CargoServicioImpl implements CargoServicio {
 
         uCargo.setEstadoCargo(request.getEstadoCargo());
         uCargo.setPuntoId(request.getPuntoId());
-        uCargo.setUnidadOrganizacionId(request.getUnidadOrganizativaId());
+        uCargo.setUnidadOrganizativaId(request.getUnidadOrganizativaId());
         uCargo.setTransfCreacionId(request.getTransfCreacionId());
         uCargo.setTransfSupresionId(request.getTransfSupresionId());
 

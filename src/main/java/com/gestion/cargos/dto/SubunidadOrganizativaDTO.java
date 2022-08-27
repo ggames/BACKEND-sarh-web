@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.gestion.cargos.modelo.UnidadOrganizativa;
 
-public class SubunidadOrganizativaDto {
+public class SubunidadOrganizativaDTO {
 
 	private Long id;
 

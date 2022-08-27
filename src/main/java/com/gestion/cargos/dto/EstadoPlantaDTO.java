@@ -2,7 +2,7 @@ package com.gestion.cargos.dto;
 
 import java.util.Date;
 
-public class EstadoPlantaDto {
+public class EstadoPlantaDTO {
 	
 	private Long id;
 	

@@ -8,8 +8,8 @@ import com.gestion.cargos.modelo.TipoDocumento;
 import lombok.Data;
 
 @Data
-public class AgenteDto{
-	
+public class AgenteDTO {
+
 	private Long id;
 
 	private String nombre;
@@ -29,9 +29,5 @@ public class AgenteDto{
 	private String telefono;
 
 	private String domicilio;
-
-    private Date createdAt;
-    
-    private Date UpdatedAt;
 
 }

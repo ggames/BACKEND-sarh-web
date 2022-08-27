@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.gestion.cargos.dto.PuntoDto;
+import com.gestion.cargos.dto.PuntoDTO;
 import com.gestion.cargos.dto.PuntoRequest;
 
 @Service
 public interface PuntoServicio {
   
-	List<PuntoDto> findAll();
+	List<PuntoDTO> findAll();
 	
-	PuntoDto findByPuntoId(Long id);
+	PuntoDTO findByPuntoId(Long id);
 	
 	public void save(PuntoRequest request);
 
