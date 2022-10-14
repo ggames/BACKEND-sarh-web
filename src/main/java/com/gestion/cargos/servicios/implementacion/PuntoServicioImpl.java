@@ -58,8 +58,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 				puntoOrigenRequest -> new PuntoOrigen(puntoOrigenRequest.getPuntoOrigenId(), puntoOrigenRequest.getCantOcupados())
 		).collect(Collectors.toList());
 
-		Punto p =  new Punto(request.getCodigoCargo(),request.getNombreCargo()
-				 ,request.getDedicacionCargo(), request.getCantidad_puntos());
+		Punto p =  new Punto(request.getTipo_cargo(), request.getPuntos_disponibles());
 		      p.setOrigenes(items);
 
 		for (PuntoOrigen item:items
@@ -78,10 +77,8 @@ public class PuntoServicioImpl implements PuntoServicio {
 
 		Punto uPunto = punto.get();
 
-		uPunto.setCodigoCargo(request.getCodigoCargo());
-		uPunto.setNombreCargo(request.getNombreCargo());
-		uPunto.setDedicacionCargo(request.getDedicacionCargo());
-		uPunto.setCantidad_puntos(request.getCantidad_puntos());
+		uPunto.setTipo_cargo (request.getTipo_cargo());
+		uPunto.setPuntos_disponibles(request.getPuntos_disponibles());
 
 
 		this.puntoRepositorio.save(uPunto);

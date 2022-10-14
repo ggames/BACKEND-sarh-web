@@ -9,10 +9,10 @@ public class TransformacionRequest {
 	@JsonProperty("id")
 	private long id;
 	
-    @JsonProperty("numero_resolucion")
+    @JsonProperty("numeroResolucion")
 	private String numeroResolucion;
 	
-    @JsonProperty("resultado_transformacion")
+    @JsonProperty("resultadoTransformacion")
 	private int resultadoTransformacion;
 	
     @JsonProperty("created_at")

@@ -13,13 +13,5 @@ import com.gestion.cargos.modelo.Punto;
 @Repository
 public interface PuntoRepositorio extends JpaRepository<Punto, Long> {
 
-	@Transactional(readOnly = true)
-	List<Punto> findByNombreCargo(String nombre);
 
-	@Transactional(readOnly = true)
-	List<Punto> findByCodigoCargo(String codigoCargo);
-
-
-	/*@Transactional(readOnly = true)
-	List<Punto> findByDedicacionCargo(String dedicacion);*/
 }

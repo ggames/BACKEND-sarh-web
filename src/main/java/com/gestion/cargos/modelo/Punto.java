@@ -19,14 +19,13 @@ public class Punto {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "codigo_cargo")
-	private String codigoCargo;
-	@Column(name = "nombre_cargo")
-	private String nombreCargo;
-	@Column(name = "dedicacion_cargo")
-	private String dedicacionCargo;
+
+	@ManyToOne
+	@JoinColumn(name = "tipo_cargo_id")
+	@JsonIgnoreProperties("puntos")
+	private TipoCargo tipo_cargo;
     
-	private int cantidad_puntos;
+	private int puntos_disponibles;
 
 	@JsonIgnoreProperties("puntoId")
     @OneToMany(mappedBy = "puntoId" , cascade = CascadeType.ALL)
@@ -36,11 +35,9 @@ public class Punto {
     
 	private Date updatedAt;
 
-	public Punto(String codigoCargo, String nombreCargo, String dedicacionCargo, int cantidad_puntos) {
-		this.codigoCargo = codigoCargo;
-		this.nombreCargo = nombreCargo;
-		this.dedicacionCargo = dedicacionCargo;
-		this.cantidad_puntos = cantidad_puntos;
+	public Punto(TipoCargo tipo_cargo , int cantidad_puntos) {
+		this.tipo_cargo = tipo_cargo;
+		this.puntos_disponibles = cantidad_puntos;
 	}
 
 	public Punto() {

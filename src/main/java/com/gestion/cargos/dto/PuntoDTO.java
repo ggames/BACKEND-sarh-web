@@ -14,13 +14,9 @@ public class PuntoDTO {
 
 	private Long id;
 
-	private String codigoCargo;
+	private TipoCargoDTO tipo_cargo;
 	
-	private String nombreCargo;
-	
-	private String dedicacionCargo;
-	
-	private int cantidad_puntos;
+	private int puntos_disponibles;
 
 	private List<PuntoOrigenDTO> origenes;
 

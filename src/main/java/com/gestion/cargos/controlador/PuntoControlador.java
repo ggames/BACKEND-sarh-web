@@ -34,7 +34,7 @@ public class PuntoControlador {
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody() PuntoRequest request) {
 
-        logger.info("OBJETO " + request.getOrigenes());
+        logger.info("OBJETO " + request.getPuntos_disponibles(), " " + request.getTipo_cargo());
         this.puntoValidator.validator(request);
         this.puntoServicio.save(request);
 

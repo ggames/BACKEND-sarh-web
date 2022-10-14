@@ -12,7 +12,7 @@ import com.gestion.cargos.dto.PuntoRequest;
 public class PuntoValidatorImpl {
 
     public void validator(PuntoRequest request) {
-        if (request.getCodigoCargo().equals("")) {
+        if (request.getTipo_cargo() == null) {
             throw new BusinessException("P-401", HttpStatus.INTERNAL_SERVER_ERROR,"El Código de Cargo es obligatorio");
         }
 

@@ -24,8 +24,7 @@ public class PuntosManager {
 
         List<PuntoOrigen> nuevosOrigenes = new ArrayList<>();
 
-        Punto nuevoPunto = new Punto(punto.getCodigoCargo(), punto.getNombreCargo(),
-                punto.getDedicacionCargo(), punto.getCantidad_puntos());
+        Punto nuevoPunto = new Punto(punto.getTipo_cargo(), punto.getPuntos_disponibles());
 
         puntoRepositorio.save(nuevoPunto);
 
@@ -42,9 +41,9 @@ public class PuntosManager {
 
             Punto punto_origen = puntoRepositorio.findById(origen.getId()).get();
 
-            int existencia = punto_origen.getCantidad_puntos() - origen.getCantOcupados();
+            int existencia = punto_origen.getPuntos_disponibles() - origen.getCantOcupados();
 
-            punto_origen.setCantidad_puntos(existencia);
+            punto_origen.setPuntos_disponibles(existencia);
 
             puntoRepositorio.save(punto_origen);
         }
@@ -60,7 +59,7 @@ public class PuntosManager {
             if (origenes.size() <= 0 || origenes.isEmpty()) {
                 for (PuntoOrigen origen : origenes) {
                     Punto punto_origen = puntoRepositorio.findById(origen.getId()).get();
-                    punto_origen.setCantidad_puntos(punto_origen.getCantidad_puntos() + origen.getCantOcupados());
+                    punto_origen.setPuntos_disponibles(punto_origen.getPuntos_disponibles() + origen.getCantOcupados());
 
                     puntoRepositorio.save(punto_origen);
                 }
