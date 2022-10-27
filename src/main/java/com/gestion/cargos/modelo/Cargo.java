@@ -26,8 +26,13 @@ public class Cargo {
     @JoinColumn(name = "punto_id")
     private Punto puntoId;
 
-    private String estadoCargo;
+    @ManyToOne
+    @JoinColumn(name = "estado_cargo_id")
+    private EstadoCargo estadoCargo;
 
+    @ManyToOne
+    @JoinColumn(name = "caracter_id")
+    private CargoCaracter caracter;
     @ManyToOne
     @JoinColumn(name = "transf_creacion_id")
     private Transformacion transfCreacionId;
@@ -44,10 +49,11 @@ public class Cargo {
     private Date updatedAt;
 
 
-    public Cargo(UnidadOrganizativa unidadOrganizativaId, Punto puntoId, String estadoCargo, Transformacion transfCreacionId, Transformacion transfSupresionId) {
+    public Cargo(UnidadOrganizativa unidadOrganizativaId, Punto puntoId, EstadoCargo estadoCargo, CargoCaracter caracter, Transformacion transfCreacionId, Transformacion transfSupresionId) {
         this.unidadOrganizativaId = unidadOrganizativaId;
         this.puntoId = puntoId;
         this.estadoCargo = estadoCargo;
+        this.caracter = caracter;
         this.transfCreacionId = transfCreacionId;
         this.transfSupresionId = transfSupresionId;
     }
