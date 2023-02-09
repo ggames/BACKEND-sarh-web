@@ -13,6 +13,8 @@ public interface PlantaServicio {
 
     PlantaDTO findByPlantaId(Long plantaId);
 
+    PlantaDTO findByPlantaByCargo(Long cargo);
+
     public void save(PlantaRequest planta);
 
     public void update(Long plantaId, PlantaRequest planta);

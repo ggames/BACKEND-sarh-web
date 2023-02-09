@@ -16,6 +16,8 @@ import com.gestion.cargos.repositorio.PuntoRepositorio;
 import com.gestion.cargos.servicios.interfaz.PuntoServicio;
 import com.gestion.cargos.utils.MHelpers;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
 public class PuntoServicioImpl implements PuntoServicio {
@@ -32,6 +34,21 @@ public class PuntoServicioImpl implements PuntoServicio {
 		List<PuntoDTO> puntosDto = new ArrayList<>();
 
 		for (Punto punto : puntos) {
+			PuntoDTO dto = MHelpers.modelMapper().map(punto, PuntoDTO.class);
+			puntosDto.add(dto);
+		}
+
+		return puntosDto;
+	}
+
+	@Override
+	public List<PuntoDTO> findPuntoByTransitorioAndPuntosDisponibles(boolean transitorio, Long[] estadosCargosID) {
+
+		//Iterable<Punto> puntos = this.puntoRepositorio.findPuntoByTransitorioAndByPuntosDisponibles(transitorio);
+	    Iterable<Punto> puntos = this.puntoRepositorio.
+				findPuntoByTransitorioByEstadoCargoList(transitorio, estadosCargosID );
+		List<PuntoDTO> puntosDto = new ArrayList<>();
+		for (Punto punto: puntos){
 			PuntoDTO dto = MHelpers.modelMapper().map(punto, PuntoDTO.class);
 			puntosDto.add(dto);
 		}
@@ -58,15 +75,30 @@ public class PuntoServicioImpl implements PuntoServicio {
 				puntoOrigenRequest -> new PuntoOrigen(puntoOrigenRequest.getPuntoOrigenId(), puntoOrigenRequest.getCantOcupados())
 		).collect(Collectors.toList());
 
-		Punto p =  new Punto(request.getTipo_cargo(), request.getPuntos_disponibles());
+		Punto p =  new Punto(request.getTipo_cargo(), request.getPuntos_disponibles(), request.isTransitorio());
 		      p.setOrigenes(items);
 
-		for (PuntoOrigen item:items
-			 ) {
-			item.setPuntoId(p);
-		}
+		if(!items.isEmpty()) {
+			for (PuntoOrigen item : items
+			) {
 
+				item.setPuntoId(p);
+				updatePuntos(item.getPuntoOrigenId(), item.getCantOcupados());
+			}
+		}
 		this.puntoRepositorio.save(p);
+	}
+
+
+	public void updatePuntos(Long puntoId, int cant_ocupado){
+
+		Optional<Punto> punto = this.puntoRepositorio.findById(puntoId);
+
+		Punto uPunto = punto.get();
+
+		uPunto.setPuntos_disponibles(uPunto.getPuntos_disponibles() - cant_ocupado);
+
+		this.puntoRepositorio.save(uPunto);
 	}
 
 	@Override
@@ -77,7 +109,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 
 		Punto uPunto = punto.get();
 
-		uPunto.setTipo_cargo (request.getTipo_cargo());
+	 	// uPunto.setTipo_cargo (request.getTipo_cargo());
 		uPunto.setPuntos_disponibles(request.getPuntos_disponibles());
 
 

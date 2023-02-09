@@ -3,7 +3,6 @@ package com.gestion.cargos.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.modelo.Cargo;
-import com.gestion.cargos.modelo.EstadoPlanta;
 import lombok.Data;
 
 import java.util.Date;
@@ -17,25 +16,35 @@ public class PlantaRequest {
 	@JsonProperty("caracter")
 	private String caracter;
 
-	@JsonProperty("cargo_id")
-	private Cargo cargoId;
+	@JsonProperty("idCargo")
+	private Cargo idCargo;
 
-	@JsonProperty("estado_planta_id")
-	private EstadoPlanta estadoPlantaId;
-
-	@JsonProperty("agente_id")
+	@JsonProperty("agenteId")
 	private Agente agenteId;
 
-	@JsonProperty("fecha_movimiento")
+	@JsonProperty("fechaMovimiento")
 	private Date fechaMovimiento;
 
-	@JsonProperty("motivo_movimiento")
+	@JsonProperty("motivoMovimiento")
 	private String motivoMovimiento;
 
-    @JsonProperty("created_at")
+    @JsonProperty("createdAt")
 	private Date createdAt;
 
-    @JsonProperty("updated_at")
+    @JsonProperty("updatedAt")
 	private Date updateAt;
+
+	@JsonProperty("resolucionInicio")
+	private String resolucionInicio;
+
+	@JsonProperty("fechaInicio")
+	private Date fechaInicio;
+
+	@JsonProperty("resolucionFin")
+	private String resolucionFin;
+
+	@JsonProperty("fechaFin")
+	private Date fechaFin;
+
 
 }

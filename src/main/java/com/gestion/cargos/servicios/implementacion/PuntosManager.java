@@ -24,13 +24,9 @@ public class PuntosManager {
 
         List<PuntoOrigen> nuevosOrigenes = new ArrayList<>();
 
-        Punto nuevoPunto = new Punto(punto.getTipo_cargo(), punto.getPuntos_disponibles());
+        Punto nuevoPunto = new Punto(punto.getTipo_cargo(), punto.getPuntos_disponibles(), punto.isTransitorio());
 
         puntoRepositorio.save(nuevoPunto);
-
-
-
-
 
         for (PuntoOrigen origen : origenes) {
 

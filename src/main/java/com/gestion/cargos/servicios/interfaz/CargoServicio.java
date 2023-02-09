@@ -5,13 +5,16 @@ import com.gestion.cargos.dto.CargoRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public interface CargoServicio {
 
     List<CargoDTO> findAll();
 
-    CargoDTO findByCargoId(Long cargoId);
+    CargoDTO findByIdCargo(Long cargoId);
+
+
 
     void save(CargoRequest request);
 

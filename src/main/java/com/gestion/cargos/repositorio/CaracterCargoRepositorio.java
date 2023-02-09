@@ -10,8 +10,8 @@ import java.util.Optional;
 
 @Repository
 @Transactional
-public interface CaracterCargoRepositorio extends JpaRepository<CargoCaracter, Integer> {
+public interface CaracterCargoRepositorio extends JpaRepository<CargoCaracter, Long> {
 
-    Optional<CargoCaracter> findByCaraterNombre(cCaracterNombre caracterNombre);
+    Optional<CargoCaracter> findByCaracter(cCaracterNombre caracterNombre);
 
 }

@@ -19,7 +19,9 @@ public interface AgenteServicio{
 
     @Query("SELECT a FROM agente a WHERE a.nombre= ?1")
     AgenteDTO findByNombre(String nombre);
-    
+
+    @Query("SELECT a FROM agente a WHERE a.documento= ?1")
+    AgenteDTO findByDocumento(Integer documento);
     AgenteDTO findByAgenteId(Long id);
     
     public void save(AgenteRequest agente);

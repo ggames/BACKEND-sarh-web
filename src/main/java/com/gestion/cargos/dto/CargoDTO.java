@@ -1,8 +1,6 @@
 package com.gestion.cargos.dto;
 
-import com.gestion.cargos.modelo.Punto;
-import com.gestion.cargos.modelo.Transformacion;
-import com.gestion.cargos.modelo.UnidadOrganizativa;
+import com.gestion.cargos.modelo.*;
 import lombok.Data;
 
 import java.util.Date;
@@ -12,13 +10,12 @@ import java.util.Date;
 public class CargoDTO {
 
 	private Long id;
-
+	private Long idCargo;
 	private UnidadOrganizativa unidadOrganizativaId;
-
 	private Punto puntoId;
+	private EstadoCargo estadoCargo;
 
-	private String estadoCargo;
-
+	private CargoCaracter  caracter;
 	private Transformacion transfCreacionId;
 
 	private Transformacion transfSupresionId;

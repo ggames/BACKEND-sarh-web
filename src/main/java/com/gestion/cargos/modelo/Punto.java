@@ -24,20 +24,26 @@ public class Punto {
 	@JoinColumn(name = "tipo_cargo_id")
 	@JsonIgnoreProperties("puntos")
 	private TipoCargo tipo_cargo;
-    
+
+	@JsonIgnoreProperties("puntoId")
+	@OneToMany(mappedBy = "puntoId", cascade = CascadeType.ALL)
+	private List<Cargo> cargos;
 	private int puntos_disponibles;
 
 	@JsonIgnoreProperties("puntoId")
     @OneToMany(mappedBy = "puntoId" , cascade = CascadeType.ALL)
 	private List<PuntoOrigen> origenes;
 
+
+	private boolean transitorio;
 	private Date createdAt;
     
 	private Date updatedAt;
 
-	public Punto(TipoCargo tipo_cargo , int cantidad_puntos) {
+	public Punto(TipoCargo tipo_cargo , int cantidad_puntos, boolean transitorio) {
 		this.tipo_cargo = tipo_cargo;
 		this.puntos_disponibles = cantidad_puntos;
+		this.transitorio = transitorio;
 	}
 
 	public Punto() {

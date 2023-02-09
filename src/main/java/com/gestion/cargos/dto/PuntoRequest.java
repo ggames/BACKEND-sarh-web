@@ -16,6 +16,8 @@ public class PuntoRequest {
 	@JsonProperty("puntos_disponibles")
 	private int puntos_disponibles;
 
+	@JsonProperty("transitorio")
+	private boolean transitorio;
 	@JsonProperty("origenes")
 	private List<PuntoOrigenRequest> origenes = new ArrayList<>();
 

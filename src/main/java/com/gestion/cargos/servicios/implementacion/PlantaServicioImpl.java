@@ -39,6 +39,12 @@ public class PlantaServicioImpl implements PlantaServicio {
     }
 
     @Override
+    public PlantaDTO findByPlantaByCargo(Long cargo) {
+        Planta planta = this.plantaRepositorio.findByPlantaByCargo(cargo).orElseThrow();
+        return MHelpers.modelMapper().map(planta, PlantaDTO.class);
+    }
+
+    @Override
     public void save(PlantaRequest request) {
 
         Planta planta = MHelpers.modelMapper().map(request, Planta.class);
@@ -53,10 +59,9 @@ public class PlantaServicioImpl implements PlantaServicio {
 
         Planta uPlanta = planta.get();
 
-        uPlanta.setEstadoPlantaId(request.getEstadoPlantaId());
+
         uPlanta.setAgenteId(request.getAgenteId());
-        uPlanta.setCaracter(request.getCaracter());
-        uPlanta.setCargoId(request.getCargoId());
+        uPlanta.setCargoId(request.getIdCargo());
         uPlanta.setFechaMovimiento(request.getFechaMovimiento());
         uPlanta.setMotivoMovimiento(request.getMotivoMovimiento());
 

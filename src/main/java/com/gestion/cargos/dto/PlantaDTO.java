@@ -2,7 +2,6 @@ package com.gestion.cargos.dto;
 
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.modelo.Cargo;
-import com.gestion.cargos.modelo.EstadoPlanta;
 
 import java.util.Date;
 
@@ -16,14 +15,20 @@ public class PlantaDTO {
 
 	private Cargo cargoId;
 
-	private EstadoPlanta estadoPlantaId;
-
 	private Agente agenteId;
 
 	private Date fechaMovimiento;
 
 	private String motivoMovimiento;
-	
+
+	private String resolucionInicio;
+
+	private Date fechaInicio;
+
+	private String resolucionFin;
+
+	private Date fechaFin;
+
 	private Date createdAt;
 
 	private Date updateAt;

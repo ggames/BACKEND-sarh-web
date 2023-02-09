@@ -1,5 +1,6 @@
 package com.gestion.cargos.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.ArrayList;
@@ -24,8 +25,13 @@ public class UnidadOrganizativa {
 
     private int viceDirectorId;
 
+    @JsonIgnoreProperties("unidadOrganizativaId")
     @OneToMany(mappedBy = "unidadOrganizativaId", cascade = CascadeType.ALL)
     private List<SubunidadOrganizativa> subunidades = new ArrayList<>();
+
+    @JsonIgnoreProperties("unidadOrganizativaId")
+    @OneToMany(mappedBy = "unidadOrganizativaId", cascade = CascadeType.ALL)
+    private List<Cargo>cargos = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;

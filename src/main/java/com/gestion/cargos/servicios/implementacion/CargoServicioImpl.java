@@ -1,5 +1,3 @@
-
-
 package com.gestion.cargos.servicios.implementacion;
 
 import com.gestion.cargos.dto.CargoDTO;
@@ -9,11 +7,13 @@ import com.gestion.cargos.repositorio.CargoRepositorio;
 import com.gestion.cargos.servicios.interfaz.CargoServicio;
 import com.gestion.cargos.utils.MHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Component
 public class CargoServicioImpl implements CargoServicio {
 
     @Autowired
@@ -33,8 +33,8 @@ public class CargoServicioImpl implements CargoServicio {
     }
 
     @Override
-    public CargoDTO findByCargoId(Long cargoId) {
-        Cargo cargo = this.cargoRepositorio.findById(cargoId).orElse(null);
+    public CargoDTO findByIdCargo(Long cargoId) {
+        Cargo cargo = this.cargoRepositorio.findByIdCargo(cargoId);
         return MHelpers.modelMapper().map(cargo, CargoDTO.class);
     }
 

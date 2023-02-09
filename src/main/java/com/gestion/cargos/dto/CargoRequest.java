@@ -3,9 +3,7 @@ package com.gestion.cargos.dto;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.gestion.cargos.modelo.Punto;
-import com.gestion.cargos.modelo.Transformacion;
-import com.gestion.cargos.modelo.UnidadOrganizativa;
+import com.gestion.cargos.modelo.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,25 +13,29 @@ public class CargoRequest {
 	@JsonProperty("id")
 	private Long id;
 
-	@JsonProperty("unidad_organizativa_id")
+	@JsonProperty("idCargo")
+	private Long idCargo;
+	@JsonProperty("unidadOrganizativaId")
 	private UnidadOrganizativa unidadOrganizativaId;
 
-	@JsonProperty("punto_id")
+	@JsonProperty("puntoId")
 	private Punto puntoId;
 
-	@JsonProperty("estado_cargo")
-	private String estadoCargo;
+	@JsonProperty("estadoCargo")
+	private EstadoCargo estadoCargo;
+    @JsonProperty("caracter")
+	private CargoCaracter caracter;
 
 	@JsonProperty("transf_creacion_id")
 	private Transformacion transfCreacionId;
 
-	@JsonProperty("transf_supresion_id")
+	@JsonProperty("transfSupresionId")
 	private Transformacion transfSupresionId;
 
-	@JsonProperty("created_at")
+	@JsonProperty("createdAt")
 	private Date createdAt;
 
-    @JsonProperty("updated_at")
+    @JsonProperty("updatedAt")
 	private Date updatedAt;
 
 }

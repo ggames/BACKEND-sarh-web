@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import com.gestion.cargos.dto.PuntoRequest;
@@ -55,6 +56,12 @@ public class PuntoControlador {
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PuntoDTO>> findAllPunto(){
         return ResponseEntity.ok (this.puntoServicio.findAll());
+    }
+
+@GetMapping("/transitorios/{transitorio}")
+@ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<List<PuntoDTO>>findPuntosDisponibles(@PathVariable("transitorio") boolean transitorio, @RequestParam Long[] estados ){
+        return ResponseEntity.ok(this.puntoServicio.findPuntoByTransitorioAndPuntosDisponibles(transitorio,estados));
     }
 
     @GetMapping("/{puntoId}")

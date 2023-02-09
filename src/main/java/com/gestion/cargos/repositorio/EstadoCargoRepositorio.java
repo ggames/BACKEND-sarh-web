@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface EstadoCargoRepositorio extends JpaRepository<EstadoCargo, Integer> {
+public interface EstadoCargoRepositorio extends JpaRepository<EstadoCargo, Long> {
 
-    Optional<EstadoCargo> findByNombreEstado(ECargoNombre cargoNombre);
+    Optional<EstadoCargo> findByNombre(ECargoNombre cargoNombre);
 }

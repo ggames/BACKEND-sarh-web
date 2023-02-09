@@ -1,5 +1,8 @@
 package com.gestion.cargos.modelo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,6 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="SubunidadOrganizativa", schema = "cargos")
+@Data
 public class SubunidadOrganizativa {
 	
 	@Id
@@ -21,62 +25,14 @@ public class SubunidadOrganizativa {
 	private int codigoGuarani;
 	
 	private String nombre;
-	@ManyToOne
+	@ManyToOne(optional = true)
 	@JoinColumn(name = "unidad_organizativa_id")
+	@JsonIgnoreProperties("subunidades")
 	private UnidadOrganizativa unidadOrganizativaId;
 	
 	private Date createdAt;
 	
 	private Date updatedAt;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getCodigoGuarani() {
-		return codigoGuarani;
-	}
-
-	public void setCodigoGuarani(int codigoGuarani) {
-		this.codigoGuarani = codigoGuarani;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public UnidadOrganizativa getUnidadOrganizacionalId() {
-		return unidadOrganizativaId;
-	}
-
-	public void setUnidadOrganizativaId(UnidadOrganizativa unidadOrganizativaId) {
-		this.unidadOrganizativaId = unidadOrganizativaId;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Date updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	
-		
 
 }

@@ -51,6 +51,10 @@ public class AgenteControlador {
 		return ResponseEntity.ok(this.agenteServicio.findByNombre(nombre));
 	}
 
+	@GetMapping(value = "/{documento}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> findByDocumentoAgente(@PathVariable("documento") Integer documento){
+		return ResponseEntity.ok(this.agenteServicio.findByDocumento(documento));
+	}
 	@PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> updateAgente(@PathVariable("id") Long id, @RequestBody AgenteRequest agente)
 			throws ApiUnprocessableEntity {

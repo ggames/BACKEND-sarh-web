@@ -6,6 +6,8 @@ import lombok.Data;
 @Data
 public class CaracterDTO {
 
+    private Long id;
+
     private cCaracterNombre cargoCaracter;
 
     private String nombre;

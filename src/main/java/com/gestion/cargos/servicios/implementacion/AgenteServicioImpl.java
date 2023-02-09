@@ -52,6 +52,15 @@ public class AgenteServicioImpl implements AgenteServicio {
 	}
 
 	@Override
+	public AgenteDTO findByDocumento(Integer documento) {
+		Optional<Agente> agente = this.agenteRepositorio.findByDocumento(documento);
+		if(!agente.isPresent()){
+			return null;
+		}
+		return  MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
+	}
+
+	@Override
 	public AgenteDTO findByAgenteId(Long id) {
 
 		Optional<Agente> agentes = this.agenteRepositorio.findById(id);

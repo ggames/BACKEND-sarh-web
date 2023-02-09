@@ -18,17 +18,13 @@ public class Planta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	private String caracter;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "cargo_id")
+	@JsonIgnoreProperties("plantas")
 	private Cargo cargoId;
-	
-	@ManyToOne
-	@JoinColumn(name="estado_planta_id")
-	private EstadoPlanta estadoPlantaId;
-	
+
+
 	@ManyToOne
 	@JoinColumn(name = "agente_id")
 	private Agente agenteId;
@@ -37,18 +33,20 @@ public class Planta {
 
 	private String motivoMovimiento;
 
-	@JsonIgnoreProperties("plantaId")
-	@OneToMany(mappedBy = "plantaId", cascade = CascadeType.ALL)
-	private List<DetallePlanta> detallePlantas = new ArrayList<>();
+	private String resolucionInicio;
+
+	private Date fechaInicio;
+
+	private String resolucionFin;
+
+	private Date fechaFin;
 
 	private Date createdAt;
 	
 	private Date updateAt;
 
-	public Planta(String caracter, Cargo cargoId, EstadoPlanta estadoPlantaId, Agente agenteId, Date fechaMovimiento, String motivoMovimiento) {
-		this.caracter = caracter;
+	public Planta(Cargo cargoId, Agente agenteId, Date fechaMovimiento, String motivoMovimiento) {
 		this.cargoId = cargoId;
-		this.estadoPlantaId = estadoPlantaId;
 		this.agenteId = agenteId;
 		this.fechaMovimiento = fechaMovimiento;
 		this.motivoMovimiento = motivoMovimiento;

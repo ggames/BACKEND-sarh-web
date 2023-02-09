@@ -20,4 +20,6 @@ public class PuntoDTO {
 
 	private List<PuntoOrigenDTO> origenes;
 
+	private boolean transitorio;
+
 }

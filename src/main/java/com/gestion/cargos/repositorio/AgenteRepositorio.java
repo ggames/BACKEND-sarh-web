@@ -17,5 +17,6 @@ public interface AgenteRepositorio extends JpaRepository<Agente, Long> {
 	
 	public boolean existsByNombre(String nombre);
     
-	
+	@Transactional(readOnly = true)
+	Optional<Agente>findByDocumento(Integer documento);
 }

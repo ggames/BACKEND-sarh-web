@@ -15,7 +15,7 @@ public class EstadoCargo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @NotNull
     @Enumerated(EnumType.STRING)

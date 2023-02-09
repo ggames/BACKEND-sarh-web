@@ -29,7 +29,10 @@ public class PlantaControlador {
 
         return ResponseEntity.ok(this.plantaServicio.findByPlantaId(plantaId));
     }
-
+    @GetMapping(value = "/codigo/{cargo}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PlantaDTO> findByPlantaCargo(@PathVariable Long cargo){
+        return ResponseEntity.ok(this.plantaServicio.findByPlantaByCargo(cargo));
+    }
     @PostMapping(value = "/create" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> savePlanta(@RequestBody PlantaRequest request){
         this.plantaServicio.save(request);
