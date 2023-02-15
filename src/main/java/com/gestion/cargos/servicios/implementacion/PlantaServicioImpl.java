@@ -61,7 +61,7 @@ public class PlantaServicioImpl implements PlantaServicio {
 
 
         uPlanta.setAgenteId(request.getAgenteId());
-        uPlanta.setCargoId(request.getIdCargo());
+        uPlanta.setCargoId(request.getCargoId());
         uPlanta.setFechaMovimiento(request.getFechaMovimiento());
         uPlanta.setMotivoMovimiento(request.getMotivoMovimiento());
 

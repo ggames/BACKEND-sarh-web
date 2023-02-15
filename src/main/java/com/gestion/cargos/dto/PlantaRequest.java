@@ -16,8 +16,8 @@ public class PlantaRequest {
 	@JsonProperty("caracter")
 	private String caracter;
 
-	@JsonProperty("idCargo")
-	private Cargo idCargo;
+	@JsonProperty("cargoId")
+	private Cargo cargoId;
 
 	@JsonProperty("agenteId")
 	private Agente agenteId;

@@ -50,7 +50,7 @@ public class CargoServicioImpl implements CargoServicio {
         Optional<Cargo> cargo = this.cargoRepositorio.findById(cargoId);
 
         Cargo uCargo = cargo.get();
-
+        uCargo.setCaracter(request.getCaracter());
         uCargo.setEstadoCargo(request.getEstadoCargo());
         uCargo.setPuntoId(request.getPuntoId());
         uCargo.setUnidadOrganizativaId(request.getUnidadOrganizativaId());
