@@ -1,0 +1,10 @@
+package com.gestion.cargos.servicios.interfaz;
+
+import com.gestion.cargos.dto.PuntoDetailDTO;
+
+import java.util.List;
+
+public interface JoinPlantaServicio {
+
+    public List<PuntoDetailDTO> findByPlantaDisponible();
+}

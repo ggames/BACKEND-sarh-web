@@ -3,6 +3,8 @@ package com.gestion.cargos.controlador;
 import com.gestion.cargos.dto.Mensaje;
 import com.gestion.cargos.dto.PlantaDTO;
 import com.gestion.cargos.dto.PlantaRequest;
+import com.gestion.cargos.dto.PuntoDetailDTO;
+
 import com.gestion.cargos.servicios.implementacion.PlantaServicioImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +21,11 @@ public class PlantaControlador {
     @Autowired
     private PlantaServicioImpl plantaServicio;
 
+    @GetMapping(value = "/libres/ocupado", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<PuntoDetailDTO>> findPuntosOcupadosLibres(){
+        return ResponseEntity.ok(this.plantaServicio.findByPlantaOfPuntos());
+         // new ResponseEntity<List<PuntoDetailDTO>>(this.joinPlantaService.findByPlantaDisponible() ,HttpStatus.OK);
+    }
     @GetMapping(value = "/all" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<PlantaDTO>> findAllPlanta(){
        return  ResponseEntity.ok(this.plantaServicio.findAll());
@@ -33,6 +40,8 @@ public class PlantaControlador {
     public ResponseEntity<PlantaDTO> findByPlantaCargo(@PathVariable Long cargo){
         return ResponseEntity.ok(this.plantaServicio.findByPlantaByCargo(cargo));
     }
+
+
     @PostMapping(value = "/create" , produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> savePlanta(@RequestBody PlantaRequest request){
         this.plantaServicio.save(request);

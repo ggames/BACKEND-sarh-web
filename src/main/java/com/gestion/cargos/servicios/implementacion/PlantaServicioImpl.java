@@ -2,6 +2,7 @@ package com.gestion.cargos.servicios.implementacion;
 
 import com.gestion.cargos.dto.PlantaDTO;
 import com.gestion.cargos.dto.PlantaRequest;
+import com.gestion.cargos.dto.PuntoDetailDTO;
 import com.gestion.cargos.modelo.Planta;
 import com.gestion.cargos.repositorio.PlantaRepositorio;
 import com.gestion.cargos.servicios.interfaz.PlantaServicio;
@@ -31,6 +32,17 @@ public class PlantaServicioImpl implements PlantaServicio {
 
         return plantalistDTO;
     }
+
+    @Override
+    public List<PuntoDetailDTO> findByPlantaOfPuntos() {
+      //  Iterable<PuntoDetailDTO> puntosList = this.plantaRepositorio.fetchDataLeftJoin();
+        List<PuntoDetailDTO> lista_PuntoDetail = this.plantaRepositorio.fetchDataLeftJoin();
+
+
+        return lista_PuntoDetail;
+   //     return null;
+    }
+
 
     @Override
     public PlantaDTO findByPlantaId(Long plantaId) {

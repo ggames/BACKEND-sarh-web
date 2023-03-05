@@ -1,14 +1,24 @@
 package com.gestion.cargos.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.gestion.cargos.dto.PuntoDetailDTO;
 import lombok.Data;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.*;
+import java.util.Date;
 
+
+@SqlResultSetMapping(name = "DetailMapping",
+           classes = @ConstructorResult(
+				   targetClass = PuntoDetailDTO.class,
+				   columns = {
+						   @ColumnResult(name = "id", type = Long.class),
+						   @ColumnResult(name = "tipoCargo"),
+						   @ColumnResult(name="cargoID", type = Long.class),
+						   @ColumnResult(name = "puntoDisponible", type = Long.class),
+						   @ColumnResult(name="nombreApellido")
+				   }
+		   ))
 
 @Entity
 @Table(name = "Planta", schema = "cargos")

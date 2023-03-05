@@ -1,7 +1,9 @@
 package com.gestion.cargos.servicios.interfaz;
 
+import com.gestion.cargos.dto.IndicePorcentajeRequest;
 import com.gestion.cargos.dto.TipoCargoDTO;
 import com.gestion.cargos.dto.TipoCargoRequest;
+import com.gestion.cargos.modelo.TipoCargo;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,5 +18,6 @@ public interface TipoCargoServicio {
 
     public void update(Long id, TipoCargoRequest request);
 
+    public void updateAll(List<TipoCargo> tipoCargos, IndicePorcentajeRequest request);
     public boolean existTipoCargo(Long id);
 }

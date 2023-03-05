@@ -1,0 +1,19 @@
+package com.gestion.cargos.repositorio;
+
+import com.gestion.cargos.dto.PuntoDetailDTO;
+import com.gestion.cargos.modelo.Planta;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+import java.util.List;
+
+
+public interface JoinPlantaRepositorio extends JpaRepository<Planta, Long> {
+
+    @Query(value = "SELECT new PuntoDetailDTO(pp.id, ag.nombre ,ag.apellido, tc.cargo , ca.id_cargo , pp.puntos_disponibles)  " +
+            "                 FROM cargos.planta pl LEFT JOIN  cargos.cargos ca ON pl.cargo_id = ca.id  " +
+            "                 LEFT JOIN cargos.agente ag ON ag.id = pl.agente_id " +
+            "                 RIGHT JOIN cargos.puntos pp ON pp.id = ca.punto_id LEFT JOIN cargos.tipo_cargos tc " +
+            "                 ON tc.id = pp.tipo_cargo_id ")
+    List<PuntoDetailDTO> fetchDataLeftJoin();
+}

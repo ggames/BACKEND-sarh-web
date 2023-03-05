@@ -1,0 +1,19 @@
+package com.gestion.cargos.servicios.implementacion;
+
+import com.gestion.cargos.dto.PuntoDetailDTO;
+import com.gestion.cargos.repositorio.JoinPlantaRepositorio;
+import com.gestion.cargos.servicios.interfaz.JoinPlantaServicio;
+import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
+import java.util.List;
+
+@Service
+public class JoinPlantaServicioImpl implements JoinPlantaServicio {
+    @Resource
+    private JoinPlantaRepositorio joinPlantaRepository;
+
+    public List<PuntoDetailDTO> findByPlantaDisponible(){
+        return  joinPlantaRepository.fetchDataLeftJoin();
+    }
+}

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.gestion.cargos.dto.PlantaDTO;
+import com.gestion.cargos.modelo.Planta;
 import com.gestion.cargos.modelo.PuntoOrigen;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -27,6 +29,12 @@ public class PuntoServicioImpl implements PuntoServicio {
 
 	@Autowired
 	private PuntosManager puntosManager;
+
+
+	@Override
+	public List<Punto> findAllPuntos() {
+		return this.puntoRepositorio.findAll();
+	}
 
 	@Override
 	public List<PuntoDTO> findAll() {
@@ -67,6 +75,10 @@ public class PuntoServicioImpl implements PuntoServicio {
 
 	}
 
+	public Punto findById(Long id){
+		return this.puntoRepositorio.findById(id).orElse(null);
+	}
+
 	@Override
 	@Transactional
 	public void save(PuntoRequest request) {
@@ -89,7 +101,8 @@ public class PuntoServicioImpl implements PuntoServicio {
 		this.puntoRepositorio.save(p);
 	}
 
-
+    // Actualiza la cantidad de puntos disponibles cuando los puntos son ocupados para crear
+	// Nuevos Puntos
 	public void updatePuntos(Long puntoId, int cant_ocupado){
 
 		Optional<Punto> punto = this.puntoRepositorio.findById(puntoId);
@@ -97,6 +110,16 @@ public class PuntoServicioImpl implements PuntoServicio {
 		Punto uPunto = punto.get();
 
 		uPunto.setPuntos_disponibles(uPunto.getPuntos_disponibles() - cant_ocupado);
+
+		this.puntoRepositorio.save(uPunto);
+	}
+
+	public void updatePuntosParitaria(Long puntoId, int nuevaCantidad ){
+		Optional<Punto> punto = this.puntoRepositorio.findById(puntoId);
+
+		Punto uPunto = punto.get();
+
+		uPunto.setPuntos_disponibles(nuevaCantidad);
 
 		this.puntoRepositorio.save(uPunto);
 	}

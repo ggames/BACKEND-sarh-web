@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 public class PuntoRequest {
 
-	@JsonProperty("tipo_cargo_id")
+	@JsonProperty("tipo_cargo")
 	private TipoCargo tipo_cargo;
 
 	@JsonProperty("puntos_disponibles")

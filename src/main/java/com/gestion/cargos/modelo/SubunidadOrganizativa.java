@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,8 @@ public class SubunidadOrganizativa {
 	@JoinColumn(name = "unidad_organizativa_id")
 	@JsonIgnoreProperties("subunidades")
 	private UnidadOrganizativa unidadOrganizativaId;
-	
+
+
 	private Date createdAt;
 	
 	private Date updatedAt;

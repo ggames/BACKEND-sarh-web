@@ -1,6 +1,7 @@
 package com.gestion.cargos.controlador;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,8 @@ import com.gestion.cargos.dto.SubunidadOrganizativaRequest;
 import com.gestion.cargos.servicios.implementacion.SubunidadOrganizativaServicioImpl;
 import com.gestion.cargos.utils.exceptions.ApiUnprocessableEntity;
 import com.gestion.cargos.validator.SubunidadOrganizativaValidatorImpl;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import org.springframework.web.util.UriBuilder;
 
 @RestController
 @RequestMapping("/subunidad/")
@@ -41,15 +44,16 @@ public class SubunidadOrganizativaControlador {
 
 
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> guardarSubunidadOrganizativa(@RequestBody SubunidadOrganizativaRequest request)
+	public ResponseEntity<SubunidadOrganizativaRequest> guardarSubunidadOrganizativa(@RequestBody SubunidadOrganizativaRequest request)
 			throws ApiUnprocessableEntity {
 
 		this.SUvalidator.validator(request);
 
 		this.subunidadOrganizativaServicio.save(request);
 
-		return ResponseEntity.ok(Boolean.TRUE);
+		return new ResponseEntity<>(this.getHttpHeaders(request.getId()),HttpStatus.CREATED);
 	}
+
 
 	@PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> actualizarSubunidadOrganizativa(@RequestBody SubunidadOrganizativaRequest req,
@@ -65,5 +69,12 @@ public class SubunidadOrganizativaControlador {
 		return ResponseEntity.ok(Boolean.TRUE);
 
 	}
-	
+
+	HttpHeaders getHttpHeaders(Long id){
+		HttpHeaders httpHeaders = new HttpHeaders();
+		httpHeaders.setLocation(ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/id").buildAndExpand(id).toUri());
+		return httpHeaders;
+	}
 }

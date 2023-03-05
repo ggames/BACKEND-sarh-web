@@ -2,6 +2,8 @@ package com.gestion.cargos.servicios.interfaz;
 
 import java.util.List;
 
+import com.gestion.cargos.dto.PlantaDTO;
+import com.gestion.cargos.modelo.Punto;
 import org.springframework.stereotype.Service;
 
 import com.gestion.cargos.dto.PuntoDTO;
@@ -10,7 +12,8 @@ import org.springframework.util.MultiValueMap;
 
 @Service
 public interface PuntoServicio {
-  
+
+	List<Punto> findAllPuntos();
 	List<PuntoDTO> findAll();
 
 	List<PuntoDTO>findPuntoByTransitorioAndPuntosDisponibles(boolean transitorio, Long[] estadosCargos);

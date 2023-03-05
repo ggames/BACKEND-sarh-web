@@ -6,10 +6,7 @@ import com.gestion.cargos.repositorio.CaracterCargoRepositorio;
 import com.gestion.cargos.servicios.interfaz.CaracterCargoServicio;
 import com.gestion.cargos.utils.MHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import com.gestion.cargos.enums.cCaracterNombre;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.gestion.cargos.dto;
 
-import com.gestion.cargos.security.enums.RolNombre;
+import com.gestion.cargos.enums.RolNombre;
 import lombok.Data;
 
 @Data

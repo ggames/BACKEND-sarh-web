@@ -1,5 +1,6 @@
 package com.gestion.cargos.controlador;
 
+import com.gestion.cargos.dao.PuntoDAO;
 import com.gestion.cargos.dto.PuntoDTO;
 
 
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 import com.gestion.cargos.dto.PuntoRequest;
@@ -25,12 +25,16 @@ import java.util.List;
 public class PuntoControlador {
 
     @Autowired
+    PuntoDAO puntoDAO;
+    @Autowired
     PuntoValidatorImpl puntoValidator;
 
     @Autowired
     PuntoServicioImpl puntoServicio;
 
     Logger logger = LoggerFactory.getLogger(PuntoControlador.class);
+
+
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody() PuntoRequest request) {
@@ -52,14 +56,16 @@ public class PuntoControlador {
          this.puntoValidator.validator(request);
          this.puntoServicio.update(puntoId, request);
     }
+
+
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PuntoDTO>> findAllPunto(){
         return ResponseEntity.ok (this.puntoServicio.findAll());
     }
 
-@GetMapping("/transitorios/{transitorio}")
-@ResponseStatus(HttpStatus.OK)
+    @GetMapping("/transitorios/{transitorio}")
+    @ResponseStatus(HttpStatus.OK)
     public ResponseEntity<List<PuntoDTO>>findPuntosDisponibles(@PathVariable("transitorio") boolean transitorio, @RequestParam Long[] estados ){
         return ResponseEntity.ok(this.puntoServicio.findPuntoByTransitorioAndPuntosDisponibles(transitorio,estados));
     }
