@@ -18,7 +18,7 @@ public interface PlantaRepositorio extends JpaRepository<Planta, Long> {
 
     @Transactional(readOnly = true)
     @Query(value = "SELECT pp.id AS id, ag.nombre AS nombre ,ag.apellido AS apellido," +
-            "    tc.cargo AS cargo , ca.id_cargo AS codCargo , pp.puntos_disponibles AS disponible, es.nombre AS estado" +
+            "    tc.cargo AS cargo , ca.id_cargo AS codCargo , pp.puntos_disponibles AS disponible, pp.puntos_faltantes AS faltantes, es.nombre AS estado" +
             "                 FROM cargos.planta pl LEFT JOIN  cargos.cargos ca ON pl.cargo_id = ca.id  " +
             "            LEFT JOIN cargos.estado_cargo es ON es.id = ca.estado_cargo_id LEFT JOIN cargos.agente ag ON ag.id = pl.agente_id " +
             "                 RIGHT JOIN cargos.puntos pp ON pp.id = ca.punto_id LEFT JOIN cargos.tipo_cargos tc " +

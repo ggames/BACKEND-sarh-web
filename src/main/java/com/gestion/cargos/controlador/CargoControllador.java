@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cargo")
 public class CargoControllador {
@@ -35,6 +37,11 @@ public class CargoControllador {
     @GetMapping(value = "/{nroCodigo}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<CargoDTO> getCargoByCodigo(@PathVariable("nroCodigo") Long nroCodigo){
         return ResponseEntity.ok(this.cargoServicio.findByIdCargo(nroCodigo));
+    }
+
+    @GetMapping(value= "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<CargoDTO>> getCargos(){
+        return ResponseEntity.ok(this.cargoServicio.findAll());
     }
 
 

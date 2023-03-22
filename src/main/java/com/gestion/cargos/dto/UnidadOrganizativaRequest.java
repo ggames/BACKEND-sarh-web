@@ -1,7 +1,17 @@
 package com.gestion.cargos.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.gestion.cargos.modelo.Cargo;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class UnidadOrganizativaRequest {
   
 	@JsonProperty("id")
@@ -15,38 +25,9 @@ public class UnidadOrganizativaRequest {
 
     @JsonProperty("viceDirectorId")   
 	private int viceDirectorId;
+    @JsonProperty("cargos")
+    private List<Cargo> cargos = new ArrayList<>();
 
     
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public int getDirectorId() {
-		return directorId;
-	}
-
-	public void setDirectorId(int directorId) {
-		this.directorId = directorId;
-	}
-
-	public int getViceDirectorId() {
-		return viceDirectorId;
-	}
-
-	public void setViceDirectorId(int viceDirectorId) {
-		this.viceDirectorId = viceDirectorId;
-	}
 
 }

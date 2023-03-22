@@ -1,5 +1,6 @@
 package com.gestion.cargos.controlador;
 
+import com.gestion.cargos.dto.SubunidadOrganizativaDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +22,8 @@ import com.gestion.cargos.validator.SubunidadOrganizativaValidatorImpl;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.util.UriBuilder;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/subunidad/")
 public class SubunidadOrganizativaControlador {
@@ -31,13 +34,13 @@ public class SubunidadOrganizativaControlador {
 	private SubunidadOrganizativaValidatorImpl SUvalidator;
 
 	@GetMapping(value = "all", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> obtenerTodasSubunidadesOrg() {
+	public ResponseEntity<List<SubunidadOrganizativaDTO>> obtenerTodasSubunidadesOrg() {
 
 		return ResponseEntity.ok(this.subunidadOrganizativaServicio.findAll());
 	}
 	
 	@GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE )
-	public ResponseEntity<?>obtenerSubunidadOrganizativa(@PathVariable("id") Long id){
+	public ResponseEntity<SubunidadOrganizativaDTO>obtenerSubunidadOrganizativa(@PathVariable("id") Long id){
 		
 		return ResponseEntity.ok(this.subunidadOrganizativaServicio.findBySubunidadOrganizativaId(id));
 	}

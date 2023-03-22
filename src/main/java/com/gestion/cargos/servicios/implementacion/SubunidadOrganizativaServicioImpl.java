@@ -66,7 +66,7 @@ public class SubunidadOrganizativaServicioImpl implements SubunidadOrganizativaS
 		
 		uSubunidad.setCodigoGuarani(request.getCodigoGuarani());
 		uSubunidad.setNombre(request.getNombre());
-		uSubunidad.setUnidadOrganizativaId(request.getUnidadOrganizativaId());
+		uSubunidad.setUnidadOrganizativaID(request.getUnidadOrganizativaId());
 		
 		this.subunidadOrganizativaRepositorio.save(uSubunidad);
 	}

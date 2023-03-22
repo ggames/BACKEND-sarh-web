@@ -19,6 +19,8 @@ public interface PuntoDetailDTO {
 
     Integer getDisponible();
 
+    Integer getFaltantes();
+
     String getEstado();
 
 }

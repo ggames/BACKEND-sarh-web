@@ -53,9 +53,9 @@ public class PuntosManager {
                        double razon_ptos = ptoDisponible/ ptoTipo;
 
                        int cant = (int)Math.round(razon_ptos * cantidad);
-                      logger.info("COCIENTE " + cant);
+                       logger.error("COCIENTE " + cant);
 
-                       this.puntoServicio.updatePuntosParitaria(pto.getId(), cantidad);
+                       this.puntoServicio.updatePuntosParitaria(pto.getId(), cant);
                    }
                 });
             }

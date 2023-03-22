@@ -1,6 +1,8 @@
 package com.gestion.cargos.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gestion.cargos.modelo.*;
@@ -26,12 +28,14 @@ public class CargoRequest {
     @JsonProperty("caracter")
 	private CargoCaracter caracter;
 
-	@JsonProperty("transf_creacion_id")
+	@JsonProperty("transfCreacionId")
 	private Transformacion transfCreacionId;
 
 	@JsonProperty("transfSupresionId")
 	private Transformacion transfSupresionId;
 
+	@JsonProperty("plantas")
+	private List<Planta> plantas = new ArrayList<>();
 	@JsonProperty("createdAt")
 	private Date createdAt;
 

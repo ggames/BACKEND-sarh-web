@@ -1,6 +1,7 @@
 package com.gestion.cargos.controlador;
 
 import com.gestion.cargos.dao.PuntoDAO;
+import com.gestion.cargos.dto.Mensaje;
 import com.gestion.cargos.dto.PuntoDTO;
 
 
@@ -38,6 +39,10 @@ public class PuntoControlador {
 
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody() PuntoRequest request) {
+
+        if(this.puntoServicio.existsByCodPunto(request.getCodPunto())){
+            return new ResponseEntity(new Mensaje("El codigo de punto ya existe"), HttpStatus.BAD_REQUEST);
+        }
 
         logger.info("OBJETO " + request.getPuntos_disponibles(), " " + request.getTipo_cargo());
         this.puntoValidator.validator(request);

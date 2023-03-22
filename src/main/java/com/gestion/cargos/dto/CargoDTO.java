@@ -14,7 +14,6 @@ public class CargoDTO {
 	private UnidadOrganizativa unidadOrganizativaId;
 	private Punto puntoId;
 	private EstadoCargo estadoCargo;
-
 	private CargoCaracter  caracter;
 	private Transformacion transfCreacionId;
 

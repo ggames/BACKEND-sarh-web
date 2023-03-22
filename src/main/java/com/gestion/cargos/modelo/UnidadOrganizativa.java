@@ -1,7 +1,9 @@
 package com.gestion.cargos.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,8 +14,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "UnidadesOrganizativas", schema = "cargos")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class UnidadOrganizativa {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,13 +28,13 @@ public class UnidadOrganizativa {
 
     private int viceDirectorId;
 
-    @JsonIgnoreProperties("unidadOrganizativaId")
-    @OneToMany(mappedBy = "unidadOrganizativaId", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("unidadOrganizativaID")
+    @OneToMany(mappedBy = "unidadOrganizativaID", cascade = CascadeType.ALL)
     private List<SubunidadOrganizativa> subunidades = new ArrayList<>();
 
-    @JsonIgnoreProperties("unidadOrganizativaId")
+    @JsonIgnoreProperties(value = "unidadOrganizativaId", allowSetters = true)
     @OneToMany(mappedBy = "unidadOrganizativaId", cascade = CascadeType.ALL)
-    private List<Cargo>cargos = new ArrayList<>();
+    private List<Cargo>ucargos = new ArrayList<>();
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
@@ -39,14 +42,7 @@ public class UnidadOrganizativa {
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
 
-    public UnidadOrganizativa(String nombre, int directorId, int viceDirectorId) {
-        this.nombre = nombre;
-        this.directorId = directorId;
-        this.viceDirectorId = viceDirectorId;
-    }
 
-    public UnidadOrganizativa() {
-    }
 }
 
 

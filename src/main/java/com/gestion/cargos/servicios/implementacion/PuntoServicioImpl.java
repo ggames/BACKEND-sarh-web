@@ -87,7 +87,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 				puntoOrigenRequest -> new PuntoOrigen(puntoOrigenRequest.getPuntoOrigenId(), puntoOrigenRequest.getCantOcupados())
 		).collect(Collectors.toList());
 
-		Punto p =  new Punto(request.getTipo_cargo(), request.getPuntos_disponibles(), request.isTransitorio());
+		Punto p =  new Punto(request.getCodPunto(), request.getTipo_cargo(), request.getPuntos_disponibles(), request.getPuntos_faltantes(),request.isTransitorio());
 		      p.setOrigenes(items);
 
 		if(!items.isEmpty()) {
@@ -150,6 +150,11 @@ public class PuntoServicioImpl implements PuntoServicio {
 	public boolean existPunto(Long id) {
 
 		return this.puntoRepositorio.existsById(id);
+	}
+
+	@Override
+	public boolean existsByCodPunto(Long codpunto) {
+		return this.puntoRepositorio.existsByCodPunto(codpunto);
 	}
 
 }

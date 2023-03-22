@@ -16,7 +16,7 @@ public class PuntoDAO {
 
     public List<PuntoDetailDTO>findPuntosDetalle(){
         String sql = "SELECT pp.id, CONCAT(ag.nombre, ' - ' ,ag.apellido) As nombre, tc.cargo , pp.puntos_disponibles \n" +
-                " FROM cargos.planta pl LEFT JOIN  cargos.cargos ca ON pl.cargo_id = ca.id  " +
+                " pp.puntos_faltantes As faltantes FROM cargos.planta pl LEFT JOIN  cargos.cargos ca ON pl.cargo_id = ca.id  " +
                 " LEFT JOIN cargos.agente ag ON ag.id = pl.agente_id " +
                 " RIGHT JOIN cargos.puntos pp ON pp.id = ca.punto_id LEFT JOIN cargos.tipo_cargos tc \n" +
                 " ON tc.id = pp.tipo_cargo_id";

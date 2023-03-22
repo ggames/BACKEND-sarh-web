@@ -13,8 +13,8 @@ public class PlantaRequest {
 	@JsonProperty("id")
 	private Long id;
 
-	@JsonProperty("caracter")
-	private String caracter;
+	//@JsonProperty("caracter")
+	//private String caracter;
 
 	@JsonProperty("cargoId")
 	private Cargo cargoId;
@@ -27,12 +27,6 @@ public class PlantaRequest {
 
 	@JsonProperty("motivoMovimiento")
 	private String motivoMovimiento;
-
-    @JsonProperty("createdAt")
-	private Date createdAt;
-
-    @JsonProperty("updatedAt")
-	private Date updateAt;
 
 	@JsonProperty("resolucionInicio")
 	private String resolucionInicio;

@@ -28,5 +28,5 @@ public interface PuntoServicio {
 	
 	public boolean existPunto(Long id);
 
-
+   public boolean existsByCodPunto(Long codpunto);
 }

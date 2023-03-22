@@ -14,10 +14,13 @@ public class PuntoDTO {
 
 	private Long id;
 
+	private Long codPunto;
+
 	private TipoCargoDTO tipo_cargo;
 	
 	private int puntos_disponibles;
 
+	private int puntos_faltantes;
 	private List<PuntoOrigenDTO> origenes;
 
 	private boolean transitorio;

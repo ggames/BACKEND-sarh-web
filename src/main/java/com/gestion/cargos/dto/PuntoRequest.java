@@ -10,11 +10,16 @@ import java.util.List;
 @Data
 public class PuntoRequest {
 
+	@JsonProperty("codPunto")
+	private Long codPunto;
 	@JsonProperty("tipo_cargo")
 	private TipoCargo tipo_cargo;
 
 	@JsonProperty("puntos_disponibles")
 	private int puntos_disponibles;
+
+	@JsonProperty("puntos_faltantes")
+	private int puntos_faltantes;
 
 	@JsonProperty("transitorio")
 	private boolean transitorio;

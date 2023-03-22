@@ -4,6 +4,9 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.bind.DefaultValue;
+import org.springframework.lang.Nullable;
 
 import java.util.Date;
 import java.util.List;
@@ -20,17 +23,20 @@ public class Punto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	private Long codPunto;
 	@ManyToOne
 	@JoinColumn(name = "tipo_cargo_id")
 	@JsonIgnoreProperties("puntos")
 	private TipoCargo tipo_cargo;
 
-	@JsonIgnoreProperties("puntoId")
+	@JsonIgnoreProperties(value = "puntoId", allowSetters = true)
 	@OneToMany(mappedBy = "puntoId", cascade = CascadeType.ALL)
 	private List<Cargo> cargos;
 	private int puntos_disponibles;
+	@Column(name = "puntos_faltantes", nullable = true)
+	private int puntos_faltantes;
 
-	@JsonIgnoreProperties("puntoId")
+	@JsonIgnoreProperties(value = "puntoId", allowSetters = true)
     @OneToMany(mappedBy = "puntoId" , cascade = CascadeType.ALL)
 	private List<PuntoOrigen> origenes;
 
@@ -40,9 +46,11 @@ public class Punto {
     
 	private Date updatedAt;
 
-	public Punto(TipoCargo tipo_cargo , int cantidad_puntos, boolean transitorio) {
+	public Punto(Long codPunto,TipoCargo tipo_cargo , int cantidad_puntos, int faltante, boolean transitorio) {
+		this.codPunto = codPunto;
 		this.tipo_cargo = tipo_cargo;
 		this.puntos_disponibles = cantidad_puntos;
+		this.puntos_faltantes = faltante;
 		this.transitorio = transitorio;
 	}
 
