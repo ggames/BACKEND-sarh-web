@@ -40,6 +40,12 @@ public class Agente {
 	@Column(nullable = false)
 	private Integer documento;
 
+	@Column(name = "es_fallecido")
+	private Boolean esFallecido;
+
+	@Column(name = "fecha_baja")
+	private Date fechaBaja;
+
 	@Column(name="fecha_nac",nullable = false)
 	private Date fechaNac;
 

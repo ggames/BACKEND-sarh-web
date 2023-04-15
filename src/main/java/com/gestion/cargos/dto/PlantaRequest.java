@@ -3,6 +3,7 @@ package com.gestion.cargos.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.gestion.cargos.modelo.Agente;
 import com.gestion.cargos.modelo.Cargo;
+import com.gestion.cargos.modelo.SubunidadOrganizativa;
 import lombok.Data;
 
 import java.util.Date;
@@ -22,6 +23,8 @@ public class PlantaRequest {
 	@JsonProperty("agenteId")
 	private Agente agenteId;
 
+	@JsonProperty("subunidadOrganizativaId")
+	private SubunidadOrganizativa subunidadOrganizativaId;
 	@JsonProperty("fechaMovimiento")
 	private Date fechaMovimiento;
 
@@ -40,5 +43,13 @@ public class PlantaRequest {
 	@JsonProperty("fechaFin")
 	private Date fechaFin;
 
+	@JsonProperty("lic_Desde")
+	private Date lic_Desde;
+
+	@JsonProperty("lic_Hasta")
+	private Date lic_Hasta;
+
+	@JsonProperty("fechaCese")
+	private Date fechaCese;
 
 }

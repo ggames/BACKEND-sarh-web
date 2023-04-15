@@ -13,26 +13,31 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "/rolplanta")
+@RequestMapping("rolplanta")
 public class RolPlantaControlador {
     @Autowired
     private RolPlantaServicioImpl rolPlantaServicio;
 
-    @GetMapping(name = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<List<RolPlantaDTO>> findAll(){
+    @GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<RolPlantaDTO>> findAll() {
         return ResponseEntity.ok(this.rolPlantaServicio.findAll());
     }
 
-    @PostMapping(name="/create", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean> save(@RequestBody  RolPlantaRequest request){
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RolPlantaDTO> findByPlantaByID(@PathVariable Long id) {
+        return ResponseEntity.ok(this.rolPlantaServicio.findByPlantaId(id));
+    }
+
+    @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> save(@RequestBody RolPlantaRequest request) {
         this.rolPlantaServicio.save(request);
         return ResponseEntity.ok(Boolean.TRUE);
     }
 
-    @PutMapping(name = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Boolean>update(@PathVariable Long id, @RequestBody RolPlantaRequest request ){
-        if(!this.rolPlantaServicio.exitsRolPlanta(id)){
-           return new ResponseEntity(new Mensaje("No existe el Rol de Planta"), HttpStatus.NOT_FOUND);
+    @PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Boolean> update(@PathVariable Long id, @RequestBody RolPlantaRequest request) {
+        if (!this.rolPlantaServicio.exitsRolPlanta(id)) {
+            return new ResponseEntity(new Mensaje("No existe el Rol de Planta"), HttpStatus.NOT_FOUND);
         }
         this.rolPlantaServicio.update(id, request);
         return ResponseEntity.ok(Boolean.TRUE);

@@ -2,6 +2,7 @@ package com.gestion.cargos.servicios.interfaz;
 
 import java.util.List;
 
+import com.gestion.cargos.modelo.UnidadOrganizativa;
 import org.springframework.stereotype.Service;
 
 import com.gestion.cargos.dto.SubunidadOrganizativaDTO;
@@ -11,7 +12,8 @@ import com.gestion.cargos.dto.SubunidadOrganizativaRequest;
 public interface SubunidadOrganizativaServicio {
 
 	List<SubunidadOrganizativaDTO>findAll();
-	
+
+	List<SubunidadOrganizativaDTO>findByUnidadOrganizativa(UnidadOrganizativa unidad);
 	SubunidadOrganizativaDTO findBySuborganizativa(Long id);
 	
 	void save(SubunidadOrganizativaRequest request);

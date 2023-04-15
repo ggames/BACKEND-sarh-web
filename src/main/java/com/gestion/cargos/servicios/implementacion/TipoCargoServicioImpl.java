@@ -29,6 +29,9 @@ public class TipoCargoServicioImpl implements TipoCargoServicio {
     @Autowired
     PuntosManager puntosManager;
 
+    @Autowired
+    ManagerPuntoOrigen managerPuntoOrigen;
+
     @Override
     public List<TipoCargoDTO> findAll() {
        List<TipoCargoDTO> tipocargosDTO = new ArrayList<>();
@@ -65,7 +68,13 @@ public class TipoCargoServicioImpl implements TipoCargoServicio {
 
 
         logger.info( "CODIGO TIPO DE CARGO " + tipocargo.get().getCantidad_puntos() );
+
+        /*
+        *   ACTUALIZO TODOS LOS PUNTOS DISPONIBLES DISPONIBLE DE MANERA INDIVIDUAL DE ACUERDO
+        *   AL TIPO DE CARGO ASIGNADO
+        * */
         this.puntosManager.ActualizarPuntosDisponiblesParitaria(tipocargo.get() , request.getCantidad_puntos());
+        this.managerPuntoOrigen.actualizarPuntoOrigenOcupado(tipocargo.get(), request.getCantidad_puntos());
 
         TipoCargo uTipoCargo = tipocargo.get();
 
@@ -95,7 +104,12 @@ public class TipoCargoServicioImpl implements TipoCargoServicio {
 
             int nueva_cant_puntos = (int) Math.round(basico_nuevo/request.getIndice());
 
+            /*
+            *   ACTUALIZO TODOS LOS PUNTOS DISPONIBLES DE ACUERDO AL TIPO DE CARGO ASIGNADO
+            * */
+
             this.puntosManager.ActualizarPuntosDisponiblesParitaria(tcargo, nueva_cant_puntos);
+        //    this.managerPuntoOrigen.actualizarPuntoOrigenOcupado(tcargo, nueva_cant_puntos);
 
             tcargo.setBasico(basico_nuevo);
             tcargo.setCantidad_puntos(nueva_cant_puntos);

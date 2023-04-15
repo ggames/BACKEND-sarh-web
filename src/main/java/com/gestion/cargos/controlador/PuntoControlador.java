@@ -36,11 +36,10 @@ public class PuntoControlador {
     Logger logger = LoggerFactory.getLogger(PuntoControlador.class);
 
 
-
     @PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> create(@RequestBody() PuntoRequest request) {
 
-        if(this.puntoServicio.existsByCodPunto(request.getCodPunto())){
+        if (this.puntoServicio.existsByCodPunto(request.getCodPunto())) {
             return new ResponseEntity(new Mensaje("El codigo de punto ya existe"), HttpStatus.BAD_REQUEST);
         }
 
@@ -53,31 +52,31 @@ public class PuntoControlador {
 
     @PutMapping(value = "/update/{puntoId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
-    public void update(@PathVariable Long puntoId,@RequestBody() PuntoRequest request){
-         if(!this.puntoServicio.existPunto(puntoId)){
-             throw new RuntimeException("No existe el Punto!");
-         }
+    public void update(@PathVariable Long puntoId, @RequestBody() PuntoRequest request) {
+        if (!this.puntoServicio.existPunto(puntoId)) {
+            throw new RuntimeException("No existe el Punto!");
+        }
 
-         this.puntoValidator.validator(request);
-         this.puntoServicio.update(puntoId, request);
+        this.puntoValidator.validator(request);
+        this.puntoServicio.update(puntoId, request);
     }
 
 
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PuntoDTO>> findAllPunto(){
-        return ResponseEntity.ok (this.puntoServicio.findAll());
+    public ResponseEntity<List<PuntoDTO>> findAllPunto() {
+        return ResponseEntity.ok(this.puntoServicio.findAll());
     }
 
     @GetMapping("/transitorios/{transitorio}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<List<PuntoDTO>>findPuntosDisponibles(@PathVariable("transitorio") boolean transitorio, @RequestParam Long[] estados ){
-        return ResponseEntity.ok(this.puntoServicio.findPuntoByTransitorioAndPuntosDisponibles(transitorio,estados));
+    public ResponseEntity<List<PuntoDTO>> findPuntosDisponibles(@PathVariable("transitorio") boolean transitorio, @RequestParam Long[] estados) {
+        return ResponseEntity.ok(this.puntoServicio.findPuntoByTransitorioAndPuntosDisponibles(transitorio, estados));
     }
 
     @GetMapping("/{puntoId}")
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<PuntoDTO>findByPuntoId(@PathVariable Long puntoId){
+    public ResponseEntity<PuntoDTO> findByPuntoId(@PathVariable Long puntoId) {
         return ResponseEntity.ok(this.puntoServicio.findByPuntoId(puntoId));
     }
 

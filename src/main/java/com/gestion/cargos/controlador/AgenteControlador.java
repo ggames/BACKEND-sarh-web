@@ -1,5 +1,10 @@
 package com.gestion.cargos.controlador;
 
+import com.gestion.cargos.modelo.Agente;
+import com.gestion.cargos.servicios.implementacion.ManagerPlantaCargo;
+import com.gestion.cargos.servicios.implementacion.ManagerPuntoOrigen;
+import com.gestion.cargos.servicios.implementacion.PuntosManager;
+import com.gestion.cargos.utils.MHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +31,9 @@ public class AgenteControlador {
 
 	@Autowired
 	private AgenteServicioImpl agenteServicio;
+
+	@Autowired
+	ManagerPlantaCargo managerPlantaCargo;
 
 	@Autowired
 	private AgenteValidatorImp agenteValidator;
@@ -61,6 +69,8 @@ public class AgenteControlador {
 		if (!agenteServicio.existeAgente(id))
 			return new ResponseEntity(new Mensaje("No existe"), HttpStatus.NOT_FOUND);
 
+		Agente agente_req = MHelpers.modelMapper().map(agente, Agente.class);
+		this.managerPlantaCargo.actualizarPlantaCargo(agente_req);
 		this.agenteValidator.validator(agente);
 		this.agenteServicio.update(agente, id);
 		return ResponseEntity.ok(Boolean.TRUE);

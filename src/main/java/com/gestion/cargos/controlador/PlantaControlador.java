@@ -6,6 +6,8 @@ import com.gestion.cargos.dto.PlantaRequest;
 import com.gestion.cargos.dto.PuntoDetailDTO;
 
 import com.gestion.cargos.servicios.implementacion.PlantaServicioImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +20,7 @@ import java.util.List;
 @RequestMapping("planta")
 public class PlantaControlador {
 
+    Logger logger = LoggerFactory.getLogger(PlantaControlador.class);
     @Autowired
     private PlantaServicioImpl plantaServicio;
 
@@ -37,7 +40,7 @@ public class PlantaControlador {
         return ResponseEntity.ok(this.plantaServicio.findByPlantaId(plantaId));
     }
     @GetMapping(value = "/codigo/{cargo}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<PlantaDTO> findByPlantaCargo(@PathVariable Long cargo){
+    public ResponseEntity<List<PlantaDTO>> findByPlantaCargo(@PathVariable Long cargo){
         return ResponseEntity.ok(this.plantaServicio.findByPlantaByCargo(cargo));
     }
 
@@ -51,11 +54,12 @@ public class PlantaControlador {
     @PutMapping(value = "/update/{plantaId}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?>updatePlanta(@PathVariable Long plantaId, @RequestBody PlantaRequest request){
 
-        if (this.plantaServicio.existByPlantaId(plantaId)){
-            return  new ResponseEntity<>(new Mensaje("La Planta de Cargo no existe"), HttpStatus.NOT_FOUND);
+        if (!this.plantaServicio.existByPlantaId(plantaId)){
+            return  new ResponseEntity(new Mensaje("La Planta de Cargo no existe"), HttpStatus.NOT_FOUND);
         }
 
-        this.updatePlanta(plantaId, request);
+        logger.info("PLANTA " + request);
+        this.plantaServicio.update(plantaId, request);
 
         return ResponseEntity.ok(Boolean.TRUE);
     }

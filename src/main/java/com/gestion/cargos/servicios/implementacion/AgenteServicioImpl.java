@@ -17,118 +17,124 @@ import com.gestion.cargos.utils.MHelpers;
 @Component
 public class AgenteServicioImpl implements AgenteServicio {
 
-	@Autowired
-	private AgenteRepositorio agenteRepositorio;
+    @Autowired
+    private AgenteRepositorio agenteRepositorio;
+    @Autowired
+    private ManagerPlantaCargo managerPlantaCargo;
 
-	@Override
-	public List<AgenteDTO> findAll() {
+    @Override
+    public List<AgenteDTO> findAll() {
 
-		List<AgenteDTO> dto = new ArrayList<>();
+        List<AgenteDTO> dto = new ArrayList<>();
 
-		Iterable<Agente> agentes = this.agenteRepositorio.findAll();
+        Iterable<Agente> agentes = this.agenteRepositorio.findAll();
 
-		for (Agente agente : agentes) {
+        for (Agente agente : agentes) {
 
-			AgenteDTO agenteDto = MHelpers.modelMapper().map(agente, AgenteDTO.class);
+            AgenteDTO agenteDto = MHelpers.modelMapper().map(agente, AgenteDTO.class);
 
-			dto.add(agenteDto);
-		}
-
-		
+            dto.add(agenteDto);
+        }
 
 
-		return dto;
-	}
+        return dto;
+    }
 
-	@Override
-	public AgenteDTO findByNombre(String nombre) {
+    @Override
+    public AgenteDTO findByNombre(String nombre) {
 
-		Optional<Agente> agente = this.agenteRepositorio.findByNombre(nombre);
+        Optional<Agente> agente = this.agenteRepositorio.findByNombre(nombre);
 
-		if (!agente.isPresent()) {
+        if (!agente.isPresent()) {
 
-			return null;
-		}
+            return null;
+        }
 
-		return MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
-	}
+        return MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
+    }
 
-	@Override
-	public AgenteDTO findByDocumento(Integer documento) {
-		Optional<Agente> agente = this.agenteRepositorio.findByDocumento(documento);
-		if(!agente.isPresent()){
-			return null;
-		}
-		return  MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
-	}
+    @Override
+    public AgenteDTO findByDocumento(Integer documento) {
+        Optional<Agente> agente = this.agenteRepositorio.findByDocumento(documento);
+        if (!agente.isPresent()) {
+            return null;
+        }
+        return MHelpers.modelMapper().map(agente.get(), AgenteDTO.class);
+    }
 
-	@Override
-	public AgenteDTO findByAgenteId(Long id) {
+    @Override
+    public AgenteDTO findByAgenteId(Long id) {
 
-		Optional<Agente> agentes = this.agenteRepositorio.findById(id);
+        Optional<Agente> agentes = this.agenteRepositorio.findById(id);
 
-		if (!agentes.isPresent()) {
-			return null;
-		}
+        if (!agentes.isPresent()) {
+            return null;
+        }
 
-		return MHelpers.modelMapper().map(agentes.get(), AgenteDTO.class);
-	}
+        return MHelpers.modelMapper().map(agentes.get(), AgenteDTO.class);
+    }
 
-	@Override
-	public void update(AgenteRequest request, Long agenteId) {
+    @Override
+    public void update(AgenteRequest request, Long agenteId) {
 
-		Optional<Agente> agente = this.agenteRepositorio.findById(agenteId);
+        Optional<Agente> agente = this.agenteRepositorio.findById(agenteId);
 
-		Agente uAgente = agente.get();
+        Agente uAgente = agente.get();
 
-		uAgente.setNombre(request.getNombre());
-		uAgente.setApellido(request.getApellido());
-		uAgente.setDocumento(request.getDocumento());
-		uAgente.setTipoDocId(request.getTipoDocId());
-		uAgente.setDocumento(request.getDocumento());
-		uAgente.setLegajo(request.getLegajo());
-		uAgente.setFechaNac(request.getFechaNac());
-		uAgente.setEmail(request.getEmail());
-		uAgente.setDomicilio(request.getDomicilio());
+        uAgente.setNombre(request.getNombre());
+        uAgente.setApellido(request.getApellido());
+        uAgente.setDocumento(request.getDocumento());
+        uAgente.setTipoDocId(request.getTipoDocId());
+        uAgente.setDocumento(request.getDocumento());
+        uAgente.setLegajo(request.getLegajo());
+        uAgente.setEsFallecido(request.getEsFallecido());
+        uAgente.setFechaBaja(request.getFechaBaja());
+        uAgente.setFechaNac(request.getFechaNac());
+        uAgente.setEmail(request.getEmail());
+        uAgente.setDomicilio(request.getDomicilio());
 
-		this.agenteRepositorio.save(uAgente);
-	}
+        if(uAgente.getEsFallecido() == true && uAgente.getFechaBaja() != null){
+            this.managerPlantaCargo.actualizarPlantaCargo(uAgente);
+        }
 
-	@Override
-	public void save(AgenteRequest agente) {
+        this.agenteRepositorio.save(uAgente);
+    }
 
-		Agente agenteGuardar = MHelpers.modelMapper().map(agente, Agente.class);
+    @Override
+    public void save(AgenteRequest agente) {
 
-		/// System.err.println("ID AFECTADO " + agenteGuardar.getId());
+        Agente agenteGuardar = MHelpers.modelMapper().map(agente, Agente.class);
 
-		agenteRepositorio.save(agenteGuardar);
-	}
+        /// System.err.println("ID AFECTADO " + agenteGuardar.getId());
 
-	@Override
-	public Agente obtenerAgente(Long id) {
-		// TODO Auto-generated method stub
-		return agenteRepositorio.findById(id).orElse(null);
-	}
+        agenteRepositorio.save(agenteGuardar);
+    }
 
-	@Override
-	public boolean existeAgente(Long id) {
-		// TODO Auto-generated method stub
-		return agenteRepositorio.existsById(id);
-	}
+    @Override
+    public Agente obtenerAgente(Long id) {
+        // TODO Auto-generated method stub
+        return agenteRepositorio.findById(id).orElse(null);
+    }
 
-	public boolean existsByNombre(String nombre) {
-		return agenteRepositorio.existsByNombre(nombre);
-	}
+    @Override
+    public boolean existeAgente(Long id) {
+        // TODO Auto-generated method stub
+        return agenteRepositorio.existsById(id);
+    }
 
-	@Override
-	public void deleteAgente(Long id) {
-		// TODO Auto-generated method stub
-		agenteRepositorio.deleteById(id);
-	}
+    public boolean existsByNombre(String nombre) {
+        return agenteRepositorio.existsByNombre(nombre);
+    }
 
-	private AgenteDTO convertToAgenteDto(final Agente agente) {
+    @Override
+    public void deleteAgente(Long id) {
+        // TODO Auto-generated method stub
+        agenteRepositorio.deleteById(id);
+    }
 
-		return MHelpers.modelMapper().map(agente, AgenteDTO.class);
-	}
+    private AgenteDTO convertToAgenteDto(final Agente agente) {
+
+        return MHelpers.modelMapper().map(agente, AgenteDTO.class);
+    }
 
 }

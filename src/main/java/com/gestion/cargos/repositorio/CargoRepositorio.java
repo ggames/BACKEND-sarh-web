@@ -5,8 +5,10 @@ import com.gestion.cargos.modelo.Cargo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-@Repository
-public interface CargoRepositorio extends JpaRepository<Cargo, Long> {
+import java.util.Optional;
 
-   Cargo findByIdCargo(Long nrocargo);
+@Repository
+public interface  CargoRepositorio extends JpaRepository<Cargo, Long> {
+
+   Optional<Cargo> findByIdCargo(Long nrocargo);
 }

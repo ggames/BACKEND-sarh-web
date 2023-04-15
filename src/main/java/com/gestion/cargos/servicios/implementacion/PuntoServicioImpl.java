@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import com.gestion.cargos.dto.PlantaDTO;
 import com.gestion.cargos.modelo.Planta;
 import com.gestion.cargos.modelo.PuntoOrigen;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +25,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Component
 public class PuntoServicioImpl implements PuntoServicio {
+
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	private PuntoRepositorio puntoRepositorio;
@@ -86,6 +90,8 @@ public class PuntoServicioImpl implements PuntoServicio {
         List<PuntoOrigen> items = request.getOrigenes().stream().map(
 				puntoOrigenRequest -> new PuntoOrigen(puntoOrigenRequest.getPuntoOrigenId(), puntoOrigenRequest.getCantOcupados())
 		).collect(Collectors.toList());
+
+		logger.info("CANTIDAD DE PUNTOS ORIGEN " + items.size());
 
 		Punto p =  new Punto(request.getCodPunto(), request.getTipo_cargo(), request.getPuntos_disponibles(), request.getPuntos_faltantes(),request.isTransitorio());
 		      p.setOrigenes(items);

@@ -42,6 +42,9 @@ public class Punto {
 
 
 	private boolean transitorio;
+
+	private boolean es_pto_rectorado;
+
 	private Date createdAt;
     
 	private Date updatedAt;

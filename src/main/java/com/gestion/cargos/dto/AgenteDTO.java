@@ -20,6 +20,10 @@ public class AgenteDTO {
 
 	private Integer documento;
 
+	private Boolean esFallecido;
+
+	private Date fechaBaja;
+
 	private Date fechaNac;
 
 	private String Legajo;

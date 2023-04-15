@@ -1,5 +1,9 @@
 package com.gestion.cargos.modelo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -12,6 +16,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="RolPlanta", schema = "cargos")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class RolPlanta {
   
 	@Id
@@ -21,8 +28,8 @@ public class RolPlanta {
 	private String tipoRol;
     
     @ManyToOne
-    @JoinColumn(name = "subunidad_organizacional_id")
-	private SubunidadOrganizativa subunidadOrganizacionalId;
+    @JoinColumn(name = "subunidad_organizativa_id")
+	private SubunidadOrganizativa subunidadOrganizativaId;
     
     @ManyToOne
     @JoinColumn(name = "planta_id")
@@ -32,54 +39,6 @@ public class RolPlanta {
     
     private Date updateAt;
 
-	public Long getId() {
-		return id;
-	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getTipoRol() {
-		return tipoRol;
-	}
-
-	public void setTipoRol(String tipoRol) {
-		this.tipoRol = tipoRol;
-	}
-
-	public SubunidadOrganizativa getSubunidadOrganizacionalId() {
-		return subunidadOrganizacionalId;
-	}
-
-	public void setSubunidadOrganizacionalId(SubunidadOrganizativa subunidadOrganizacionalId) {
-		this.subunidadOrganizacionalId = subunidadOrganizacionalId;
-	}
-
-	public Planta getPlantaId() {
-		return plantaId;
-	}
-
-	public void setPlantaId(Planta plantaId) {
-		this.plantaId = plantaId;
-	}
-
-	public Date getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(Date createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public Date getUpdateAt() {
-		return updateAt;
-	}
-
-	public void setUpdateAt(Date updateAt) {
-		this.updateAt = updateAt;
-	}
-
-    
     
 }

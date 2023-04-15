@@ -29,7 +29,7 @@ public class SubunidadOrganizativa {
 	@ManyToOne(optional = true)
 	@JoinColumn(name = "unidad_organizativa_id")
 	@JsonIgnoreProperties("subunidades")
-	private UnidadOrganizativa unidadOrganizativaID;
+	private UnidadOrganizativa unidadOrganizativaId;
 
 
 	private Date createdAt;

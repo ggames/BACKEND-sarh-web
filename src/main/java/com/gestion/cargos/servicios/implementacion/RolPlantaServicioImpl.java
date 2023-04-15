@@ -6,6 +6,7 @@ import com.gestion.cargos.modelo.RolPlanta;
 import com.gestion.cargos.repositorio.RolPlantaRepositorio;
 import com.gestion.cargos.servicios.interfaz.RolPlantaServicio;
 import com.gestion.cargos.utils.MHelpers;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Component
 public class RolPlantaServicioImpl implements RolPlantaServicio {
 
+    @Autowired
     private RolPlantaRepositorio rolPlantaRepositorio;
 
 
@@ -49,7 +51,7 @@ public class RolPlantaServicioImpl implements RolPlantaServicio {
         RolPlanta uRolPlanta = rol_planta.get();
         uRolPlanta.setTipoRol(request.getTipoRol());
         uRolPlanta.setPlantaId(request.getPlantaId());
-        uRolPlanta.setSubunidadOrganizacionalId(request.getSubunidadOrganizativaId());
+        uRolPlanta.setSubunidadOrganizativaId(request.getSubunidadOrganizativaId());
 
         this.rolPlantaRepositorio.save(uRolPlanta);
     }
@@ -61,6 +63,14 @@ public class RolPlantaServicioImpl implements RolPlantaServicio {
         RolPlantaDTO rolPlantaDTO = MHelpers.modelMapper().map(rol_planta.get(), RolPlantaDTO.class);
         return rolPlantaDTO;
     }
+
+    @Override
+    public RolPlantaDTO findByPlantaId(Long id) {
+       Optional<RolPlanta> rol_planta = this.rolPlantaRepositorio.findByPlantaId(id);
+        RolPlantaDTO rolPlantaDTO = MHelpers.modelMapper().map(rol_planta.get(), RolPlantaDTO.class);
+        return  rolPlantaDTO;
+    }
+
 
     @Override
     public boolean exitsRolPlanta(Long id) {

@@ -11,6 +11,7 @@ public interface RolPlantaServicio {
 
    List<RolPlantaDTO> findAll();
 
+   RolPlantaDTO findByPlantaId(Long id);
    void save(RolPlantaRequest request);
 
    void update(Long id, RolPlantaRequest request);

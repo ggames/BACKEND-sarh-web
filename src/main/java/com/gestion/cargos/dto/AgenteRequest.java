@@ -25,6 +25,12 @@ public class AgenteRequest {
 	@JsonProperty("documento")
 	private Integer documento;
 
+	@JsonProperty("esFallecido")
+	private Boolean esFallecido;
+
+	@JsonProperty("fechaBaja")
+	private Date fechaBaja;
+
 	@JsonProperty("fechaNac")
 	private Date fechaNac;
 

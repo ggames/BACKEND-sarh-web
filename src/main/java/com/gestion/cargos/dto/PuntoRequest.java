@@ -10,6 +10,9 @@ import java.util.List;
 @Data
 public class PuntoRequest {
 
+	@JsonProperty("id")
+	private Long id;
+
 	@JsonProperty("codPunto")
 	private Long codPunto;
 	@JsonProperty("tipo_cargo")

@@ -19,7 +19,7 @@ import java.util.List;
 public class RolController {
     @Autowired
     RolRepository rolRepository;
-    @GetMapping(name = "", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<List<RolDTO>> findAll() {
         Iterable<Rol> roles = rolRepository.findAll();
 

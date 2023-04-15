@@ -2,7 +2,9 @@ package com.gestion.cargos.modelo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.gestion.cargos.dto.PuntoDetailDTO;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -23,21 +25,27 @@ import java.util.Date;
 @Entity
 @Table(name = "Planta", schema = "cargos")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Planta {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.MERGE)
 	@JoinColumn(name = "cargo_id")
 	@JsonIgnoreProperties("plantas")
 	private Cargo cargoId;
 
-
 	@ManyToOne
 	@JoinColumn(name = "agente_id")
 	private Agente agenteId;
+
+	@ManyToOne
+	@JoinColumn(name = "subunidad_organizativa_id")
+	@JsonIgnoreProperties(allowSetters = true)
+	private SubunidadOrganizativa subunidadOrganizativaId;
 
 	private Date fechaMovimiento;
 
@@ -51,11 +59,17 @@ public class Planta {
 
 	private Date fechaFin;
 
+	private Date lic_Desde;
+
+	private Date lic_Hasta;
+
+	private Date fechaCese;
+
 	private Date createdAt;
-	
+
 	private Date updateAt;
 
-	public Planta(Cargo cargoId, Agente agenteId, Date fechaMovimiento, String motivoMovimiento) {
+	/*public Planta(Cargo cargoId, Agente agenteId, Date fechaMovimiento, String motivoMovimiento) {
 		this.cargoId = cargoId;
 		this.agenteId = agenteId;
 		this.fechaMovimiento = fechaMovimiento;
@@ -63,6 +77,6 @@ public class Planta {
 	}
 
 	public Planta() {
-	}
+	}*/
 
 }

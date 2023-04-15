@@ -5,17 +5,19 @@ import com.gestion.cargos.modelo.Cargo;
 
 import java.util.Date;
 
+import com.gestion.cargos.modelo.SubunidadOrganizativa;
 import lombok.Data;
 @Data
 public class PlantaDTO {
 
 	private Long id;
 
-	private String caracter;
-
 	private Cargo cargoId;
 
 	private Agente agenteId;
+
+
+	private SubunidadOrganizativa subunidadOrganizativaId;
 
 	private Date fechaMovimiento;
 
@@ -28,6 +30,12 @@ public class PlantaDTO {
 	private String resolucionFin;
 
 	private Date fechaFin;
+
+	private Date lic_Desde;
+
+	private Date lic_Hasta;
+
+	private Date fechaCese;
 
 	private Date createdAt;
 

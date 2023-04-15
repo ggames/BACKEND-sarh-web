@@ -1,6 +1,7 @@
 package com.gestion.cargos.controlador;
 
 import com.gestion.cargos.dto.SubunidadOrganizativaDTO;
+import com.gestion.cargos.modelo.UnidadOrganizativa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -38,10 +39,16 @@ public class SubunidadOrganizativaControlador {
 
 		return ResponseEntity.ok(this.subunidadOrganizativaServicio.findAll());
 	}
-	
+
+	@GetMapping(value = "/unidad/{unidad}")
+	public ResponseEntity<List<SubunidadOrganizativaDTO>>
+	obtenerSubunidadesByUOrganizativa(@PathVariable UnidadOrganizativa unidad){
+		return ResponseEntity.ok(this.subunidadOrganizativaServicio.findByUnidadOrganizativa(unidad));
+	}
+
 	@GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE )
 	public ResponseEntity<SubunidadOrganizativaDTO>obtenerSubunidadOrganizativa(@PathVariable("id") Long id){
-		
+
 		return ResponseEntity.ok(this.subunidadOrganizativaServicio.findBySubunidadOrganizativaId(id));
 	}
 
@@ -60,7 +67,7 @@ public class SubunidadOrganizativaControlador {
 
 	@PutMapping(value = "/update/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> actualizarSubunidadOrganizativa(@RequestBody SubunidadOrganizativaRequest req,
-			@PathVariable("id") Long id) throws ApiUnprocessableEntity {
+															 @PathVariable("id") Long id) throws ApiUnprocessableEntity {
 
 		if (!this.subunidadOrganizativaServicio.existeSubunidadOrganizativaId(id))
 			return new ResponseEntity(new Mensaje("No existe el registro"), HttpStatus.NOT_FOUND);

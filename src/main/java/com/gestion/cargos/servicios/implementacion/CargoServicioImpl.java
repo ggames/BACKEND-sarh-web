@@ -2,11 +2,14 @@ package com.gestion.cargos.servicios.implementacion;
 
 import com.gestion.cargos.dto.CargoDTO;
 import com.gestion.cargos.dto.CargoRequest;
+import com.gestion.cargos.dto.Mensaje;
+import com.gestion.cargos.excepciones.BusinessException;
 import com.gestion.cargos.modelo.Cargo;
 import com.gestion.cargos.repositorio.CargoRepositorio;
 import com.gestion.cargos.servicios.interfaz.CargoServicio;
 import com.gestion.cargos.utils.MHelpers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -34,7 +37,10 @@ public class CargoServicioImpl implements CargoServicio {
 
     @Override
     public CargoDTO findByIdCargo(Long cargoId) {
-        Cargo cargo = this.cargoRepositorio.findByIdCargo(cargoId);
+        Optional<Cargo> cargo = this.cargoRepositorio.findByIdCargo(cargoId);
+       if(!cargo.isPresent()){
+           return null;
+       }
         return MHelpers.modelMapper().map(cargo, CargoDTO.class);
     }
 
