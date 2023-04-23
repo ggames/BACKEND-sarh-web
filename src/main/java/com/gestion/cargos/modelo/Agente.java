@@ -40,7 +40,9 @@ public class Agente {
 	@Column(nullable = false)
 	private Integer documento;
 
-	@Column(name = "es_fallecido")
+
+	@Column(	columnDefinition = "boolean default false"
+	)
 	private Boolean esFallecido;
 
 	@Column(name = "fecha_baja")

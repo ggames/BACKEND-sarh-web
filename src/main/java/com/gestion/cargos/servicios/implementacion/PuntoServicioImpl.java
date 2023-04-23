@@ -93,7 +93,7 @@ public class PuntoServicioImpl implements PuntoServicio {
 
 		logger.info("CANTIDAD DE PUNTOS ORIGEN " + items.size());
 
-		Punto p =  new Punto(request.getCodPunto(), request.getTipo_cargo(), request.getPuntos_disponibles(), request.getPuntos_faltantes(),request.isTransitorio());
+		Punto p =  new Punto(request.getCodPunto(), request.getTipo_cargo(), request.getPuntos_disponibles(), request.getPuntos_faltantes(),request.isTransitorio(), request.isDeRectorado());
 		      p.setOrigenes(items);
 
 		if(!items.isEmpty()) {

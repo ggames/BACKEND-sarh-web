@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,7 @@ import com.gestion.cargos.utils.MHelpers;
 @Component
 public class AgenteServicioImpl implements AgenteServicio {
 
+    Logger logger = LoggerFactory.getLogger(this.getClass());
     @Autowired
     private AgenteRepositorio agenteRepositorio;
     @Autowired
@@ -78,6 +81,8 @@ public class AgenteServicioImpl implements AgenteServicio {
     public void update(AgenteRequest request, Long agenteId) {
 
         Optional<Agente> agente = this.agenteRepositorio.findById(agenteId);
+
+        logger.info("FECHA DE BAJA  " + request.getFechaBaja());
 
         Agente uAgente = agente.get();
 

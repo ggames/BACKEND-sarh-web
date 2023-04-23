@@ -21,8 +21,11 @@ public class PuntoDTO {
 	private int puntos_disponibles;
 
 	private int puntos_faltantes;
+
 	private List<PuntoOrigenDTO> origenes;
 
 	private boolean transitorio;
+
+	private boolean deRectorado;
 
 }

@@ -42,19 +42,21 @@ public class Punto {
 
 
 	private boolean transitorio;
-
-	private boolean es_pto_rectorado;
+    @Column(columnDefinition = "boolean default false"
+	)
+	private boolean deRectorado;
 
 	private Date createdAt;
     
 	private Date updatedAt;
 
-	public Punto(Long codPunto,TipoCargo tipo_cargo , int cantidad_puntos, int faltante, boolean transitorio) {
+	public Punto(Long codPunto,TipoCargo tipo_cargo , int cantidad_puntos, int faltante, boolean transitorio, boolean deRectorado) {
 		this.codPunto = codPunto;
 		this.tipo_cargo = tipo_cargo;
 		this.puntos_disponibles = cantidad_puntos;
 		this.puntos_faltantes = faltante;
 		this.transitorio = transitorio;
+		this.deRectorado = deRectorado;
 	}
 
 	public Punto() {
