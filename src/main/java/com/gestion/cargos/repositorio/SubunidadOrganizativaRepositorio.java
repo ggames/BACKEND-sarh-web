@@ -12,5 +12,7 @@ import java.util.List;
 public interface SubunidadOrganizativaRepositorio extends JpaRepository<SubunidadOrganizativa, Long> {
 
     List<SubunidadOrganizativa>findByUnidadOrganizativaId(UnidadOrganizativa unidad);
+
+    public boolean existsByCodigoGuarani(String codigoguarani);
 	
 }

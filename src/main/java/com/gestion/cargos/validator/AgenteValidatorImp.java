@@ -23,7 +23,6 @@ public class AgenteValidatorImp implements AgenteValidator{
 			message("El nombre es muy corto,  debe tener minimo 3 caracteres");
 		}
 		
-	
 		if(request.getApellido() == null || request.getApellido().isEmpty()) {
 			message("El apellido es un dato obligatorio");
 		}

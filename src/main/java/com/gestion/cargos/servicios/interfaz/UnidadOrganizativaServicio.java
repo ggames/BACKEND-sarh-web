@@ -9,7 +9,7 @@ import com.gestion.cargos.modelo.UnidadOrganizativa;
 
 public interface UnidadOrganizativaServicio  {
 
-	List<UnidadOrganizativaDTO> findAll();
+	//List<UnidadOrganizativa> findAll();
 	
 	public void saveUnidadOrganizativa(UnidadOrganizativaRequest request);
 

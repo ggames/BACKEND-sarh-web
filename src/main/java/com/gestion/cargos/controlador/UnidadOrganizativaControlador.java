@@ -1,5 +1,6 @@
 package com.gestion.cargos.controlador;
 
+import com.gestion.cargos.repositorio.UnidadOrganizativaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -23,6 +24,8 @@ import com.gestion.cargos.validator.UnidadOrganizativaValidatorImpl;
 public class UnidadOrganizativaControlador {
 
 	@Autowired
+	UnidadOrganizativaRepositorio unidadOrganizativaRepositorio;
+	@Autowired
 	private UnidadOrganizativaServicioImpl unidadOrganizativaServicio;
 
 	@Autowired
@@ -31,7 +34,7 @@ public class UnidadOrganizativaControlador {
 	@GetMapping(value = "/all", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Object> allUnidadOrganizativa() {
 
-		return ResponseEntity.ok(this.unidadOrganizativaServicio.findAll());
+		return ResponseEntity.ok(this.unidadOrganizativaRepositorio.findAll());
 	}
 
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE)

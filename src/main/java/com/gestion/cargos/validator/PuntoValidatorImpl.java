@@ -15,6 +15,10 @@ public class PuntoValidatorImpl {
         if (request.getTipo_cargo() == null) {
             throw new BusinessException("P-401", HttpStatus.INTERNAL_SERVER_ERROR,"El Código de Cargo es obligatorio");
         }
+        if(request.getPuntos_disponibles() < 0){
+            throw new BusinessException("P-401", HttpStatus.INTERNAL_SERVER_ERROR, "La cantidad de Puntos disponible debe ser mayor que Cero");
+        }
+
 
     }
 

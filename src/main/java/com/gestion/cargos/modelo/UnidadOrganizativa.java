@@ -28,8 +28,7 @@ public class UnidadOrganizativa {
 
     private int viceDirectorId;
 
-    @JsonIgnoreProperties("unidadOrganizativaId")
-    @OneToMany(mappedBy = "unidadOrganizativaId", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "unidadOrganizativaId", fetch = FetchType.EAGER ,cascade = CascadeType.ALL)
     private List<SubunidadOrganizativa> subunidades = new ArrayList<>();
 
     @JsonIgnoreProperties(value = "unidadOrganizativaId", allowSetters = true)

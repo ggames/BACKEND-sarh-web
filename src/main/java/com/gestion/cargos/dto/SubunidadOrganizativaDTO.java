@@ -10,7 +10,7 @@ public class SubunidadOrganizativaDTO {
 
 	private Long id;
 
-	private int codigoGuarani;
+	private String codigoGuarani;
 
 	private String nombre;
 

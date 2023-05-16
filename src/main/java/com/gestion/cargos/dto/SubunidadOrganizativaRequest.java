@@ -13,7 +13,7 @@ public class SubunidadOrganizativaRequest {
 	private Long id;
 
     @JsonProperty("codigoGuarani")
-	private int codigoGuarani;
+	private String codigoGuarani;
 
     @JsonProperty("nombre")
     private String nombre;

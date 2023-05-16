@@ -23,10 +23,10 @@ public class SubunidadOrganizativa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	private int codigoGuarani;
+	private String codigoGuarani;
 	
 	private String nombre;
-	@ManyToOne(optional = true)
+	@ManyToOne(optional = false)
 	@JoinColumn(name = "unidad_organizativa_id")
 	@JsonIgnoreProperties("subunidades")
 	private UnidadOrganizativa unidadOrganizativaId;

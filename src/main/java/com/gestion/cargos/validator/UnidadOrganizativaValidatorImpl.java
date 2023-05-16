@@ -1,5 +1,6 @@
 package com.gestion.cargos.validator;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 
 import com.gestion.cargos.dto.UnidadOrganizativaRequest;
@@ -12,7 +13,7 @@ public class UnidadOrganizativaValidatorImpl implements UnidadOrganizativaValida
 	public void validator(UnidadOrganizativaRequest request) throws ApiUnprocessableEntity {
 
 		if (request.getNombre() == null || request.getNombre().isEmpty()) {
-			message("El nombre de la Unidad Organizativa es obligatorio");
+			message("El nombre del Departamento es obligatorio");
 		}
 
 		if (request.getDirectorId() < 0) {
@@ -20,11 +21,14 @@ public class UnidadOrganizativaValidatorImpl implements UnidadOrganizativaValida
 			message("El ID del director debe ser mayor que cero");
 
 		}
+
 		if (request.getViceDirectorId() < 0) {
 
 			message("El ID del vicedirector debe ser mayor que cero");
 
 		}
+
+
 	}
 
 	private void message(String message) throws ApiUnprocessableEntity {

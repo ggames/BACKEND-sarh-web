@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,10 +19,13 @@ import com.gestion.cargos.utils.MHelpers;
 @Component
 public class UnidadOrganizativaServicioImpl implements UnidadOrganizativaServicio {
 
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	@Autowired
 	private UnidadOrganizativaRepositorio unidadOrganizativa;
 
-	@Override
+
+
+	/* @Override
 	public List<UnidadOrganizativaDTO> findAll() {
          
 		List<UnidadOrganizativaDTO> dto = new ArrayList<>();
@@ -33,9 +38,11 @@ public class UnidadOrganizativaServicioImpl implements UnidadOrganizativaServici
 		    
 			dto.add(unidadDto);
 		}
+
+		//logger.info("CANTIDAD DE MATERIAS " + dto.);
 		// TODO Auto-generated method stMensajeub
 		return dto;
-	}
+	}*/
 
 	@Override
 	public void saveUnidadOrganizativa(UnidadOrganizativaRequest request) {
